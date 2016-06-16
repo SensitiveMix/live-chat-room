@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="http://cdn.jin10x.com/images/jin10ico.png" rel="apple-touch-icon-precomposed">
+<script type="text/javascript" src="../../public/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../public/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="../../public/js/jquery.checkbox.min.js"></script>
+<link href="../../public/images/favicon.ico" type="image/x-icon" rel="icon">
+<link rel="stylesheet" type="text/css" href="../../public/stylesheets/index_3.css" media="all">
+</head>
+<body>
+<div style="" id="mainbox">
+	<div style="" id="topbar">
+    	<div class="topbar-left">
+            <div class="set01">声音提示</div>
+            <div class="set02"><input style="position: absolute; z-index: -1; visibility: hidden;" name="sybj" id="sybj" checked="checked" onchange="sound();" type="checkbox"><span style="-moz-user-select: none;" class="jquery-checkbox jquery-checkbox-checked"><span class="mark"><img src="../../public/images/empty.png"></span></span></div>
+            <div class="set03">桌面通知</div>
+            <div class="set04"><input style="position: absolute; z-index: -1; visibility: hidden;" name="zmtz" id="zmtz" onclick="init();" type="checkbox"><span style="-moz-user-select: none;" class="jquery-checkbox"><span class="mark"><img src="../../public/images/empty.png"></span></span></div>
+        </div>
+        <a href="" target="_top"><div class="topbar-right"></div></a>
+    </div>
+    <div style="" id="listarea">
+    	<div style="" class="listline">
+        	<div class="left">
+                <div class="icon"><img src="../../public/images/nomarlnews.png" height="20" border="0" width="20"></div>
+                <div class="time">17:30:05</div>
+            </div><!-- left end -->
+            <div class="right">
+                <div class="content">
+                    <div class="doany"></div>
+                    <p class="text">日本首相经济顾问滨田宏一：进一步上调消费税弊大于利；当前日元兑美元汇率并不太高。</p>
+                </div>
+            </div><!-- right end -->
+        </div><!-- listline end -->
+ 
+    	<div style="" class="listline important">
+        	<div class="left">
+                <div class="icon"><img src="../../public/images/importantnews.png" height="20" border="0" width="20"></div>
+                <div class="time">17:08:47 </div>
+            </div><!-- left end -->
+            <div class="right">
+                <div class="content">
+                    <div class="doany"></div>
+                    <p class="text">据外媒：中国央行在深圳召开银行会议，强调严格遵守房贷风控规定</p>
+                </div>
+            </div><!-- right end -->
+        </div><!-- listline end -->
+    </div>
+</div>
+<div id="jquery_jplayer" style="display: none;"></div>
+<div id="jp_container" class="demo-container" style="display: none;">
+    <ul><li><a href="" class="track">Voice</a></li></ul>
+</div>
+<script src="../../public/js/socket.io.js"></script><script type="text/javascript" src="../../public/js/oemjs.js"></script>
+</body>
+</html>

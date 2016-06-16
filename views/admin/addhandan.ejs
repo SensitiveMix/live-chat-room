@@ -1,0 +1,110 @@
+<% layout('admin/master.ejs')%>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">在线喊单</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+
+    <div class="box-body">
+        <form id="changeName" action="dosysset" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-1 control-label">多空趋势：</label>
+            <div class="col-sm-2">
+                <input type="text" name="dkqs" class="form-control" id="dkqs" value="<%=sysset.newhandan[0].dkqs%>">
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+        </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">开仓点位：</label>
+                <div class="col-sm-2">
+                    <input type="text" name="kcdw" class="form-control" id="kcdw" value="<%=sysset.newhandan[0].kcdw%>">
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">平仓点位：</label>
+                <div class="col-sm-2">
+                    <input type="text" name="pcdw" class="form-control" id="pcdw" value="<%=sysset.newhandan[0].pcdw%>">
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">止损点位：</label>
+                <div class="col-sm-2">
+                    <input type="text" name="zsdw" class="form-control" id="zsdw" value="<%=sysset.newhandan[0].zsdw%>">
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">止盈点位：</label>
+                <div class="col-sm-2">
+                    <input type="text" name="zydw" class="form-control" id="zydw" value="<%=sysset.newhandan[0].zydw%>">
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-1 control-label">备注：</label>
+                <div class="col-sm-4">
+                    <textarea name="bz" row="3" class="form-control" id="bz" value=""><%=sysset.newhandan[0].bz%></textarea>
+                </div>
+                <div class="col-sm-1">
+                    <input type="hidden" name="hdtime" class="form-control" id="hdtime" value="<%=sysset.newhandan[0].hdtime%>">
+                </div>
+            </div>
+            </form>
+        <div class="box-footer">
+            <button id="updateName" class="btn btn-info pull-right col-sm-1" type="button">提 交</button>
+        </div>
+    </div>
+    <!-- /.box-body -->
+
+    <!-- /.box-footer -->
+
+</div>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/clientofserver.js"></script>
+<script type="text/javascript">
+
+    $(function(){
+        $('#updateName').on('click',function(){
+            var myDate = new Date();
+            var hdtime = myDate.getFullYear()+"/"+(myDate.getMonth()+1)+"/"+myDate.getDate()+"<br>"+myDate.getHours()+":"+myDate.getMinutes()+":"+myDate.getSeconds();
+            $("#hdtime").val(hdtime);
+            CHAT.init();
+            CHAT.handansubmit();
+            var paramete= {
+                dkqs: $("#dkqs").val(),
+                kcdw: $("#kcdw").val(),
+                pcdw: $("#pcdw").val(),
+                zsdw: $("#zsdw").val(),
+                zydw: $("#zydw").val(),
+                bz: $("#bz").val(),
+                hduser:$("#username").text(),
+                hdtime: $("#hdtime").val()
+            }
+            $.ajax({
+                url: 'dohandan' ,
+                type: 'POST',
+                data: paramete,
+                success: function (returndata) {
+                    layer.alert('更新成功！');
+                },error: function (returndata) {
+                    layer.alert('更新失败，请检查是否有非法词汇！');
+                }
+            });
+        })
+    });
+
+</script>

@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>直播室</title>
+<link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/mainofroom.js"></script>
+</head>
+<body>
+<!--header star-->
+<div class="header">
+	<div class="lft"><a href="#" class="logo"><img src="images/logo.png"/></a><a href="#" class="preservation">保存到桌面</a><a href="#" class="subscribe">订阅</a></div>
+    <div class="rgt"><a href="#" class="land-register"><span>登陆</span>|<span>注册</span></a><a href="#" class="qqpng"><img src="images/header-pic01.png"/></a><span>客服电话:400-629-8816</span></div>
+</div>
+<!--header end-->
+<!--R-main star-->
+<div class="R-main">
+<script>
+	Rmain_Height();
+</script>
+	<!--R-lft star-->
+	<div class="R-lft lft">
+		<!--R-quotation-->
+		<ul class="ul-quotation">
+    		<li class="qtnli1"><span class="a">现货黄金</span><span class="b">1231.62</span><span class="c">0.57%</span></li>
+        	<li class="qtnli2"><span class="a">现货白银</span><span class="b">1231.62</span><span class="c">0.57%</span></li>
+        	<li class="qtnli3"><span class="a">美国原油</span><span class="b">1231.62</span><span class="c">0.57%</span></li>
+        	<li class="qtnli4"><span class="a">美元指数</span><span class="b">1231.62</span><span class="c">0.57%</span></li>
+    	</ul>
+    	<!--up-down-->
+        <div class="up-down">
+        	<a href="#" class="a"><img src="images/R-lft-pic04.png"/><br><span>12%看涨</span></a>
+            <a href="#" class="b"><img src="images/R-lft-pic05.png"/><br><span>12%盘整</span></a>
+            <a href="#" class="c"><img src="images/R-lft-pic06.png"/><br><span>12%看跌</span></a>
+        </div>
+        <!--a-iteam-->
+        <div class="a-iteam">
+        	<a class="a" id="a"><img src="images/R-lft-pic07.png"/>客户服务</a>
+            <a class="b" id="b"><img src="images/R-lft-pic08.png"/>获取软件</a>
+            <a class="c" id="c"><img src="images/R-lft-pic09.png"/>交易规则</a>
+            <a class="d" id="d"><img src="images/R-lft-pic10.png"/>课程安排</a>
+            <a class="e" id="e"><img src="images/R-lft-pic11.png"/>财经日历</a>
+            <a class="f" id="f"><img src="images/R-lft-pic12.png"/>讲师观点</a>
+        </div>
+        <div class="iteam-bg"></div>
+        <div class="iteam-divc">
+        <div class="as iteam-div" id="as"></div>
+        <div class="bs iteam-div" id="bs">ghhh</div>
+        <div class="cs iteam-div" id="cs">gh</div>
+        <div class="ds iteam-div" id="ds"></div>
+        <div class="es iteam-div" id="es">ghhh</div>
+        <div class="fs iteam-div" id="fs">gh</div>
+        </div>
+        <div class="weixin"><img src="images/R-lft-pic13.jpg"/></div>
+	</div>
+<script type="text/javascript">
+$(function(){
+$(".a-iteam a").click(function(){
+	$('.iteam-bg').css("display","block");
+	$('.iteam-divc').css("display","block");
+	var liId = $(this).attr("id");
+	$("."+ liId +"s").css("display","block");
+});
+$(".iteam-bg").click(function(){
+	$(".iteam-bg").css("display","none");
+	$(".iteam-divc").css("display","none");
+	$(".iteam-divc div").css("display","none");
+	});
+})
+</script>    
+	<!--R-lft end-->
+    <!--R-center star-->
+    <div class="R-center lft">
+    	<!--video-->
+    	<div class="video"><img src="images/R-center-pic01.jpg"/></div>
+        <!--ctr-dl-->
+        <dl class="ctr-dl">
+        	<dt class="lft"><a href="" class="curre">喊单</a><a href="">公告</a><a href="" class="a">简介</a></dt>
+            <dd class="lft">
+            	<div><p class="a">多空趋势：利多<br>开仓点位：3150<br>平仓点位：3220<br>止损点位：3110<br>止盈点位：3220</p><p class="b">备注：<br>
+现货白银可考虑在3000放空，2930止盈，3030止损；<br>2920做多，2970止盈，2890止损</p><p class="c">2015/11/16 20:09:30张老师</p></div>
+                <div style="display:none;"><p>多空趋势：利多开仓点止损点位：3110止盈点位：3220</p></div>
+                <div style="display:none;"><p>多空趋势：利多开仓点位：3150平仓点位：3220止损点位：3110止盈点位：3220开仓点位：3150平仓点位：3220止损点位：3110止盈点位：3220</p></div>
+            </dd>
+        </dl>        
+		<script type="text/javascript" >
+    		$(function(){
+        		var $div_li =$(".ctr-dl dt a");
+        		$div_li.mouseover(function(){
+            		$(this).addClass("curre") 
+                   		.siblings().removeClass("curre"); 
+            		var index =  $div_li.index(this);
+            		$(".ctr-dl dd > div")      
+                    		.eq(index).show()
+                    		.siblings().hide();
+        		})
+    		})
+		</script>
+        <!--center-btn-->
+        <div class="center-btn">
+        	<dl class="lft">
+            	<dt><img src="images/R-center-pic02.png"/>全站广播</dt>
+                <dd><a href="#">课程时间安排</a><a href="#">课程时间安排</a></dd>
+            </dl>
+            <div class="rgt"><a href="#"><img src="images/R-center-pic03.jpg"/></a></div>
+        </div>
+    </div>
+    <!--R-center end-->
+    <!--R-rgt star-->
+    	<div class="R-rgt rgt">
+        	<dl>
+            	<dt>在线网友</dt>
+                <dd>
+                    <ul id="User_List">
+                        <li><a href="#"><img src="images/R-rgt-pic02.png"/><span>富贵神仙手</span></a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    <!--R-rgt end-->
+    <!--R-middle star-->
+    <div class="R-middle">
+    	<div class="chat-lecturer">
+        	<ul>
+            	<li class="select"><a href="#" class="a">聊天窗口</a></li>
+            	<li><a href="#" class="b">讲师介绍</a></li>
+        	</ul>
+            <div class="middle-q"><MARQUEE  scrollamount="3" width="90%"><p>点击此处，或访问http://v.tjrjzx.com，进入正在讲课的直播房间</p></MARQUEE></div>
+        	<div class="middle-ctn">
+            <script>
+				Middle_Height();
+			</script>
+            	<div class="chat">
+                <script>
+					Chat_Height();
+				</script>
+                	<ul id="message">
+                                    <script>
+					Chatul_Height();
+				</script>
+  						<li><span class="a">20:09</span><img src="images/R-rgt-pic02.png"/><a href="#">张老师：</a><span class="b">课程时间安排课程时间安程时间安排课程时间安</span></li>
+                        <li><span class="a">20:09</span><img src="images/R-rgt-pic02.png"/><a href="#">张老师：</a><span class="b">课程时间安排课程时间安程时间安排课程时间安</span></li>
+                        <li><span class="a">20:09</span><img src="images/R-rgt-pic02.png"/><a href="#">张老师：</a><span class="b">课程时间安排课程时间安程时间安排课程时间安</span></li>
+                        <li><span class="a">20:09</span><img src="images/R-rgt-pic02.png"/><a href="#">张老师：</a><span class="b">课程时间安排课程时间安程时间安排课程时间安</span></li>
+                        <li><span class="a">20:09</span><img src="images/R-rgt-pic02.png"/><a href="#">张老师：</a><span class="b">课程时间安排课程时间安程时间安排课程时间安</span></li>
+                        <li class="chatli"><span class="b">某某某</span></li>
+                    </ul>
+                    <div class="chata-top">
+                    	<a href="#"><img src="images/R-middle-pic03.png"/>清屏</a><a href="#"><img src="images/R-middle-pic04.png"/>滚动</a>
+                    </div>
+                    <div class="chata-bt">
+                    	<a href="#"><img src="images/R-middle-pic01.png"/>展开</a><br><a href="#"><img src="images/R-middle-pic03.png"/>清屏</a><a href="#"><img src="images/R-middle-pic04.png"/>滚动</a><a href="#">所有人</a><a href="#"><img src="images/R-middle-pic01.png"/>隐藏</a><a href="#">快捷回复</a>
+                    </div>                   
+                </div>
+            	<div class="lecturer" style="display:none;">
+                	<dl>
+                    	<dt><img src="images/lecturer-pic01.jpg"/></dt>
+                        <dd><h2>融金讲师--飘逸</h2><p>年的从业经验，主要致力于黄金、白银、外汇等投资品种的研究，有一定的实盘操作经验和一定的交易观点。对国际金融行情的变化有一定的见解。对一些常见的指标有一定的研究。交易就是娱乐，在娱乐中赚钱，成为一个“逍遥派”的掌门人。操作思路上：长短线结合，同类产品的对冲。</p></dd>
+                    </dl>
+                    <dl>
+                    	<dt><img src="images/lecturer-pic01.jpg"/></dt>
+                        <dd><h2>融金讲师--飘逸</h2><p>年的从业经验，主要致力于黄金、白银、外汇等投资品种的研究，有一定的实盘操作经验和一定的交易观点。对国际金融行情的变化有一定的见解。对一些常见的指标有一定的研究。交易就是娱乐，在娱乐中赚钱，成为一个“逍遥派”的掌门人。操作思路上：长短线结合，同类产品的对冲。</p></dd>
+                    </dl>
+                </div>
+        	</div>
+        </div>
+        <div class="send-out">
+				<form>
+            	<input class="send-text" id="Y_iSend_Input" type="text" maxlength="100" value="">
+                <script>
+					Send_Height();
+				</script>
+                <input class="out_text" type="submit" value="发送">
+            </form>
+
+        </div>
+    </div>
+		<script type="text/javascript" >
+    		$(function(){
+        		var $div_li =$(".chat-lecturer > ul li");
+        		$div_li.mouseover(function(){
+            		$(this).addClass("select") 
+                   		.siblings().removeClass("select"); 
+            		var index =  $div_li.index(this);
+            		$(".middle-ctn > div")      
+                    		.eq(index).show()
+                    		.siblings().hide();
+        		})
+    		})
+		</script>
+    <!--R-middle end-->
+
+</div>
+<!--R-main end-->
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/client.js"></script>
+</body>
+</html>

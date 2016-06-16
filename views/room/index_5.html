@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>讲师介绍</title>
+<script language="javascript" type="text/javascript" src="../../public/js/jquery-1.9.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="../../public/js/base_001.js"></script>
+<script language="javascript" type="text/javascript" src="../../public/js/jquery.mcustomscrollbar.js"></script><script src="../../public/js/jquery.mousewheel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../public/stylesheets/index_5.css" media="all">
+</head>
+<body>
+		<div class="list">
+			
+				<div class="item">
+					<div class="face"><img src="../../public/images/20150722111227437.jpg"></div>
+					<div class="box">
+						<div class="title">
+							<span class="name">融金讲师--飘逸</span>
+							
+								<a class="attention Disable" href="javascript:void(0)" onclick="Coach('1000',this)" title="">拜师</a>
+							
+							<a class="shoutedhistory" href="">喊单记录</a>
+						</div>
+						<div class="con">6年的从业经验，主要致力于黄金、白银、外汇等投资品种的研究，有一定的实盘操作经验和一定的交易观点。对国际金融行情的变化有一定的见解。对一些常见的指标有一定的研究。交易就是娱乐，在娱乐中赚钱，成为一个“逍遥派”的掌门人。操作思路上：长短线结合，同类产品的对冲。</div>
+					</div>
+				</div>
+			
+				<div class="item">
+					<div class="face"><img src="../../public/images/201509021746289948.jpg"></div>
+					<div class="box">
+						<div class="title">
+							<span class="name">融金讲师-毛喆</span>
+							
+								<a class="attention Disable" href="javascript:void(0)" onclick="Coach('1001',this)" title="">拜师</a>
+							
+							<a class="shoutedhistory" href="">喊单记录</a>
+						</div>
+						<div class="con">五年以上证券投资经验，具备丰富的理论基础和操盘经验&nbsp;。长期致力于技术研究，系统学习过道氏理论、波浪理论，将K线、指标、划线等技术工具充分应用到实战中。2013年初进入现货行业，先后担任交易风控和技术分析工作。交易周期覆盖日内、波段及中长线交易。</div>
+					</div>
+				</div>
+			
+				<div class="item">
+					<div class="face"><img src="../../public/images/201509101001122823.jpg"></div>
+					<div class="box">
+						<div class="title">
+							<span class="name">张老师</span>
+							
+								<a class="attention Disable" href="javascript:void(0)" onclick="Coach('1002',this)" title="">拜师</a>
+							
+							<a class="shoutedhistory" href="">喊单记录</a>
+						</div>
+						<div class="con">快乐交易，轻松交易，把交易变成我们的日常之事，远离亏损，让利润奔跑起来！</div>
+					</div>
+				</div>
+			
+				<div class="item">
+					<div class="face"><img src="../../public/images/201509070905306991.jpg"></div>
+					<div class="box">
+						<div class="title">
+							<span class="name">贾凡</span>
+							
+								<a class="attention Disable" href="javascript:void(0)" onclick="Coach('1003',this)" title="">拜师</a>
+							
+							<a class="shoutedhistory" href="">喊单记录</a>
+						</div>
+						<div class="con">股票，现货，期货，外汇，原油，畅游金融市场交易的海洋，以人为本，以信立业，以仁立德，以义立形</div>
+					</div>
+				</div>
+			
+			<div style="margin-bottom: 10px;"></div>
+		</div>
+
+<script>
+	function Coach(TeacherUID,e)//拜师
+	{
+		if($(e).hasClass("Disable") == true){parent.iTip("游客无法拜师！");return;}
+		$.get("/handle/PostCoach.asp",{'TeacherUID':TeacherUID,'RoomID':7000,t:getDataTimes},function(){
+			if(CoachRe == 1)
+			{
+				parent.iTip("恭喜您，拜师成功！");
+				$(e).addClass("Coached");
+				$(e).text("已拜师");
+			}
+			else if(CoachRe == 2)
+			{
+				parent.iTip("您已经取消该拜师！");
+				$(e).removeClass("Coached");
+				$(e).text("拜师");
+			}
+			else
+			{
+				$(e).addClass("Disable");
+				parent.iTip(CoachRe);
+			}
+		},"script");
+	}
+	
+	function ToShouted(uid)
+	{
+		location.href = "/handle/ShoutedList.asp?UID=" + uid + "&RID=7000";
+	}
+	
+	function AutoResize()
+	{
+		$(".list").height($(window).height());
+		$(".list").mCustomScrollbar("update");
+	}
+	
+	$(window).resize(function(){
+		AutoResize();
+	});
+</script>
+</body>
+</html>

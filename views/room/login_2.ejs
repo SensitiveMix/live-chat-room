@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>后台登录 - <%= title %></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta content="edge" http-equiv="X-UA-Compatible">
+	<script language="javascript" type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+	<script language="javascript" type="text/javascript" src="/js/cookies.js"></script>
+	<script>
+		function InputOnFocus(e)
+		{
+			if($(e).val() == $(e).attr("placeholder"))
+			{
+				$(e).val('');
+			}
+			$(e).css({color:'#3e3e3e'})
+		}
+
+		function InputOnBlur(e)
+		{
+			if($(e).val() == '')
+			{
+				$(e).val($(e).attr("placeholder")).css({color:'#a6a6a6'});
+			}
+		}
+
+		var mailreg = /^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.){1,4}[a-z]{2,3}$/;
+		var passreg = /^[a-zA-Z0-9_]{6,16}$/;
+		function checkForm()
+		{
+			if($("#UserMail").val() == "" || $("#UserMail").val() == "如name@example.com"){
+				ShowError('账户（邮箱）不能为空！');
+				return false;
+			}
+			else if($("#UserPass").val() == ""){
+				ShowError('密码不能为空！');
+				return false;
+			}
+			else if($("#UserPass").val() == ""){
+				ShowError('密码不能为空！');
+				return false;
+			}
+			HideError();
+			return true;
+		}
+
+		function ShowError(str)
+		{
+			$('#ErrTip').text(str).show();
+		}
+		function HideError()
+		{
+			$('#ErrTip').text('').hide();
+		}
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/index_1.css" media="all">
+</head>
+<body>
+<div id="m_pbd" class="pbd clearfix">
+	<div class="m_left">
+		<a href="javascript:void(0)">
+			<img title="点击下载VV手机版" alt="点击下载VV手机版" src="/images/qlogin_left.png">
+		</a>
+	</div>
+	<div class="m_main">
+		<a id="m_close" class="dialog_close png24" href="javascript:void(0)" onclick="window.parent.Login.Hide();">
+		</a>
+		<form id="login_frm" method="post" action="doadminlogin">
+			<div id="m_commonLogin" style="" class="m_form m_commonLogin  ">
+				<h3>
+					后台登录
+				</h3>
+				<div class="form_item">
+							<span class="m_textbox">
+								<input name="name" id="UserMail" class="placeholder E_acct" value="如name@example.com" onfocus="InputOnFocus(this)" onblur="InputOnBlur(this)" placeholder="如name@example.com" type="text">
+								<span class="space">
+								</span>
+							</span>
+					<div id="ErrTip" class="m_tips png24 E_tips" style="display: none;"></div>
+				</div>
+				<div class="form_item">
+							<span class="m_textbox">
+								<input id="UserPass" name="password" onfocus="InputOnFocus(this)" value="" class="placeholder E_passwd" placeholder="密码" type="password">
+								<span class="space">
+								</span>
+							</span>
+				</div>
+				<div class="form_item form_opra">
+					<!--a onclick="return checkForm();" href="javascript:void(0);" class="m_button_large E_login">
+                        登录
+                    </a-->
+					<input value="登录" class="m_button_large E_login" onclick="return checkForm()" tabindex="4" type="submit">
+					<input id="Method" name="Method" value="Login" type="hidden">
+					<input id="_AutoLogin" value="1" name="_AutoLogin" type="hidden">
+					<input id="GoUrl" name="GoUrl" value="" type="hidden">
+				</div>
+			</div>
+		</form>
+		<div class="m_opra">
+			<div class="links">
+				<!--<a id="qqloginbt" style="background: url('/qqlogin/Connect_logo_1.png') no-repeat scroll left center transparent; padding-left: 20px;" href="http://www.vinv.cn/qqlogin/"> QQ登录</a>-->
+				<script>
+					<%-scji %>
+					$('#GoUrl')[0].value=unescape(location.search.substr(1));
+					if(window.location.search.substr(1)!=""&&window.location.search!='?undefined')
+					{
+						turl=window.location.search.substr(1);
+					}
+					else
+					{
+						turl="/";
+					}
+					//$("#qqloginbt")[0].href="http://www.vinv.cn/qqlogin/?"+turl;
+				</script>
+				<span class="vline"> </span>
+				<!--a target="_blank" href="http://www.vinv.cn/getpass.shtml">
+                    找回密码
+                </a-->
+                        <span class="vline">
+                        </span>
+				<a href="javascript:void(0)" onclick="window.parent.Reg.Show();">
+					注册帐号
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

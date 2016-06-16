@@ -1,0 +1,675 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= sysset.option_value[0].room_name %></title>
+    <link href="/stylesheets/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/qqface.css" rel="stylesheet" type="text/css"/>
+    <link href="/stylesheets/mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
+
+    <script language="javascript" type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script src="../layer-v2.2/layer/layer.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+    <script src="/js/mainofroom.js"></script>
+    <script src="/js/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.qqFace.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.mcustomscrollbar.js"></script>
+
+</head>
+<body onload="">
+<!--header star-->
+<div class="header">
+    <div class="lft"><a href="javascript:;" class="logo"><img src="<%= sysset.room_logo %>"/></a><a href="/名师指路直播系统.url"
+                                                                                                    class="preservation">保存到桌面</a><a
+                href="javascript:;" class="subscribe">订阅</a></div>
+    <div class="rgt"><a id="regBt" href="javascript:;" class="land-register">
+            <% if(user.level == "77"){ %>
+            <input id="ii1" type="button" onclick="location.href='/login'" value="登陆"/>
+            <input id="ii2" type="button" onclick="location.href='/register'" value="注册"/>
+            <span id="dd2"></span>
+            <% }else{ %>
+            <span id="dd1"><%= user.nick_name %></span>
+            <% } %>
+        </a><a href="javascript:;" class="qqpng"><img src="/images/header-pic01.png"/></a><span>客服电话:400-629-8816</span>
+    </div>
+</div>
+<!--header end-->
+<!--R-main star-->
+<div class="R-main">
+    <script>
+        Rmain_Height();
+    </script>
+    <!--R-lft star-->
+    <div class="R-lft lft">
+        <!--R-quotation-->
+        <ul class="ul-quotation">
+            <li class="qtnli1"><span class="a">上证综指</span><span class="b">
+                    <script type="text/javascript" src="http://hq.sinajs.cn/list=sh000001" charset="gb2312">
+                    </script>
+                    <script type="text/javascript">
+                        var elements = hq_str_sh000001.split(",");
+                        document.write(parseFloat(elements[3]).toFixed(2));
+                    </script>
+                </span><span id="szzz" class="c">
+                     <script type="text/javascript">
+                         var b = ((elements[3] - elements[2]) / elements[2]) * 100
+                         document.write(b.toFixed(2));
+                         if (b > 0)
+                             $("#szzz").css("background", "red");
+                     </script>
+                    %</span>
+            </li>
+            <li class="qtnli2"><span class="a">深证成指</span><span class="b">
+                    <script type="text/javascript" src="http://hq.sinajs.cn/list=sz399001" charset="gb2312">
+                    </script>
+                    <script type="text/javascript">
+                        var elements = hq_str_sz399001.split(",");
+                        document.write(parseFloat(elements[3]).toFixed(2));
+                    </script>
+                </span><span id="szcz" class="c">
+                     <script type="text/javascript">
+                         var b = ((elements[3] - elements[2]) / elements[2]) * 100
+                         document.write(b.toFixed(2));
+                         if (b > 0)
+                             $("#szcz").css("background", "red");
+                     </script>
+                    %</span>
+            </li>
+            <li class="qtnli3"><span class="a">沪深股指</span><span class="b">
+                     <script type="text/javascript" src="http://hq.sinajs.cn/list=sh000300" charset="gb2312">
+                     </script>
+                    <script type="text/javascript">
+                        var elements = hq_str_sh000300.split(",");
+                        document.write(parseFloat(elements[3]).toFixed(2));
+                    </script>
+                </span><span id="hsgz" class="c">
+                     <script type="text/javascript">
+                         var b = ((elements[3] - elements[2]) / elements[2]) * 100
+                         document.write(b.toFixed(2));
+                         if (b > 0)
+                             $("#hsgz").css("background", "red");
+                     </script>%</span>
+            </li>
+            <li class="qtnli3"><span class="a">创业板指</span><span class="b">
+                     <script type="text/javascript" src="http://hq.sinajs.cn/list=sz399006" charset="gb2312">
+                     </script>
+                    <script type="text/javascript">
+                        var elements = hq_str_sz399006.split(",");
+                        document.write(parseFloat(elements[3]).toFixed(2));
+                    </script>
+                </span><span id="cybz" class="c">
+                    <script type="text/javascript">
+                        var b = ((elements[3] - elements[2]) / elements[2]) * 100
+                        document.write(b.toFixed(2));
+                        if (b > 0)
+                            $("#cybz").css("background", "red");
+                    </script>%</span>
+            </li>
+        </ul>
+        <!--up-down-->
+        <div class="up-down">
+            <a href="javascript:;" class="a"><img src="/images/R-lft-pic04.png"/><br><span>72%看涨</span></a>
+            <a href="javascript:;" class="b"><img src="/images/R-lft-pic05.png"/><br><span>16%盘整</span></a>
+            <a href="javascript:;" class="c"><img src="/images/R-lft-pic06.png"/><br><span>22%看跌</span></a>
+        </div>
+        <!--a-iteam-->
+        <div class="a-iteam">
+            <a class="a" id="a"><img src="/images/R-lft-pic07.png"/>客户服务</a>
+            <a class="b" id="b"><img src="/images/R-lft-pic08.png"/>获取软件</a>
+            <!--<a class="c" id="c"><img src="/images/R-lft-pic09.png"/>交易规则</a>-->
+            <a class="d" id="d"><img src="/images/R-lft-pic10.png"/>课程安排</a>
+            <!--<a class="e" id="e"><img src="/images/R-lft-pic11.png"/>财经日历</a>
+            <a class="f" id="f"><img src="/images/R-lft-pic12.png"/>讲师观点</a>-->
+        </div>
+        <div class="iteam-bg"></div>
+        <div class="iteam-a"><img src="/images/iteam-a.png"/></div>
+
+        <div class="as iteam-div" id="as">
+            <ul>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a02.png"/></a><a
+                            href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a03.png"/></a></li>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a02.png"/></a><a
+                            href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a03.png"/></a></li>
+                <li><a href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a02.png"/></a><a
+                            href="http://wpa.qq.com/msgrd?v=3&uin=2880074232&site=qq&menu=yes" target="_blank"><img
+                                src="/images/iteam-divc-a03.png"/></a></li>
+            </ul>
+        </div>
+        <div class="bs iteam-div layer_notice" id="bs">
+            <div><a href="/Win7_客户端.rar"><img src="/images/iteam-divc-b02.jpg"/><span>Win7_客户端</span></a><a
+                        href="xp_客户端.rar"><img src="/images/iteam-divc-b03.jpg"/><span>xp_客户端</span></a></div>
+        </div>
+        <div class="cs iteam-div" id="cs">
+            <div><p>可能会存在品质和稳定性方面的风险；交易中心及其会员不能控制 电讯信号的强弱，也不能保证交易客户端的设备配置或连接的稳定性以及互联网传播和接收的实时性。故由以上通讯或网络故障导致.</p>
+
+                <p>投资者需要了解交易中心上市产品现货及现货延期交收交易业务具有低订金的投资特点可能导致快速的盈利或亏损。若建仓的方向与行情的波动相反，会造成较大的亏损，根据亏损的程度</p>
+
+                <p>由于国家法律、法规、政策的变化，紧急措施的出台，相关监管部门监管措施的实施交易中心交易规则的修改等原因，均可能会对投资者的投资产生影响投资者必须承担由此导致的损失。</p>
+
+                <p>由于国家法律、法规、政策的变化，紧急措施的出台，相关监管部门监管措施的实施交易中心交易规则的修改等原因，均可能会对投资者的投资产生影响投资者必须承担由此导致的损失。</p></div>
+        </div>
+        <div class="ds iteam-div" id="ds">
+            <%- sysset.lesson %>
+        </div>
+
+        <div class="es iteam-div" style="overflow-y: scroll!important;" id="es">
+            <iframe id="iframe" height="3500px" width="100%" frameborder="0" scrolling="no" src=""></iframe>
+        </div>
+        <div class="fs iteam-div" id="fs">
+            <div>
+                <table border="1">
+                    <tr class="tr1">
+                        <td>时间</td>
+                        <td>重要</td>
+                        <td>内容</td>
+                    </tr>
+                    <tr>
+                        <td>14:00</td>
+                        <td><img src="/images/iteam-divc-f02.png"/><img src="/images/iteam-divc-f02.png"/><img
+                                    src="/images/iteam-divc-f02.png"/></td>
+                        <td><span>星期一，2月16</span>
+
+                            <p>从长线来看现货白银在2900一带构筑底部的过程仍会反复进行因此中线思路的投资者<br>可考虑逢低做多，但在行情没有摆脱熊市之前看多的投资者<br>仍以比较轻仓位比例对待.建议继续坚持逢高
+                            </p></td>
+                    </tr>
+                    <tr>
+                        <td>16:00</td>
+                        <td><img src="/images/iteam-divc-f02.png"/></td>
+                        <td><span>星期二，2月17</span>
+
+                            <p>从长线来看现货白银在2900一带构筑底部的过程仍会反复进行因此中线思路的投资者<br>可考虑逢低做多，但在行情没有摆脱熊市之前看多的投资者<br>仍以比较轻仓位比例对待.建议继续坚持逢高
+                            </p></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="weixin"><img src="/images/R-lft-pic13.jpg"/></div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#b").click(function () {
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    content: $('.bs'), //捕获的元素
+                    area: ['800px', '400px']
+                });
+            });
+            $("#a").click(function () {
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    content: $('.as'), //捕获的元素
+                    area: ['800px', '400px']
+                });
+            });
+            $("#d").click(function () {
+                layer.open({
+                    type: 1,
+                    shade: false,
+                    title: false, //不显示标题
+                    content: $('.ds'), //捕获的元素
+                    area: ['800px', '400px']
+                });
+            });
+        });
+    </script>
+    <!--R-lft end-->
+    <!--R-center star-->
+    <div class="R-center lft">
+        <!--video-->
+        <div class="video">
+            <embed id="videolive" src="http://yy.com/s/34782949/34782949/yyscene.swf" quality="high" width="100%"
+                   height="100%" align="middle" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"
+                   type="application/x-shockwave-flash" autostart="true">
+        </div>
+        <!--ctr-dl-->
+        <div class="ctr-center">
+            <script>
+                Ctrcenter_Height();
+            </script>
+            <dl class="ctr-dl">
+                <dt class="lft"><!--<a  href="javascript:;" class="curre">喊单</a>--><a href="javascript:;" class="curre">公告</a><a
+                            href="javascript:;" class="a">简介</a></dt>
+                <dd>
+                    <!-- <div class="handan"><p class="a"><span>多空趋势： <label
+                                    id="dkqs"><%= sysset.newhandan[0].dkqs %></label></span><span>开仓点位：<label
+                                    id="kcdw"><%= sysset.newhandan[0].kcdw %></label></span><span>平仓点位：<label
+                                    id="pcdw"><%= sysset.newhandan[0].pcdw %></label></span><span>止损点位：<label
+                                    id="zsdw"><%= sysset.newhandan[0].zsdw %></label></span><span>止盈点位：<label
+                                    id="zydw"><%= sysset.newhandan[0].zydw %></label></span>
+
+                    <p class="b"><span>备注：</span><label id="bz"><%= sysset.newhandan[0].bz %></label></p>
+
+                    <p class="c"><img src="/images/handan-pic01.png"/><strong><label
+                                    id="hduser"><%= sysset.newhandan[0].hduser %></label></strong><span><label id="hdtime"><%- sysset.newhandan[0].hdtime %></label></span>
+                    </p>
+                    <p class="d"><a  href="javascript:;"><img src="/images/R-center-pic03.jpg"/></a></p>
+                </div>-->
+                    <div><p id="gonggao"><%= sysset.gundonggonggao %></p></div>
+                    <div style="display:none;"><p><%- sysset.jianjie %></p></div>
+                </dd>
+            </dl>
+            <script type="text/javascript">
+                $(function () {
+                    var $div_li = $(".ctr-dl dt a");
+                    $div_li.mouseover(function () {
+                        $(this).addClass("curre")
+                                .siblings().removeClass("curre");
+                        var index = $div_li.index(this);
+                        $(".ctr-dl dd > div")
+                                .eq(index).show()
+                                .siblings().hide();
+                    })
+                })
+            </script>
+            <!--center-btn-->
+            <div class="center-btn">
+                <dl class="lft">
+                    <dt><img src="/images/R-center-pic02.png"/>全站广播</dt>
+                    <dd><a href="javascript:;">课程时间安排</a><a href="javascript:;">课程时间安排</a></dd>
+                </dl>
+                <!--<div class="rgt"><a  href="javascript:;"><img src="/images/R-center-pic03.jpg"/></a></div>-->
+            </div>
+        </div>
+    </div>
+    <!--R-center end-->
+    <!--R-rgt star-->
+
+    <div class="zxwy">在线用户</div>
+    <div id="rightArrow">在线用户</div>
+    <div id="userlist" class="R-rgt rgt">
+        <dl>
+            <dd>
+                <ul id="User_List">
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <script type="text/javascript">
+        var flag = 1;
+        $('#rightArrow').click(function () {
+            if (flag == 1) {
+                $(".R-rgt, .zxwy").animate({width: '0'}, 300);
+                $(this).animate({right: '0px'}, 300);
+                flag = 0;
+            } else {
+                $(".R-rgt, .zxwy").animate({width: '175px'}, 300);
+                $(this).animate({right: '175px'}, 300);
+                flag = 1;
+            }
+        });
+    </script>
+    <!--R-rgt end-->
+
+    <input type="hidden" id="ip" value="">
+    <input type="hidden" id="allowChat" value="">
+
+    <!--R-middle star-->
+    <div class="R-middle">
+        <div class="chat-lecturer">
+            <ul>
+                <li class="select"><a href="javascript:;" class="a">聊天窗口</a></li>
+                <!-- <li><a  href="javascript:;" class="b">讲师介绍</a></li>-->
+            </ul>
+            <div class="middle-q">
+                <MARQUEE scrollamount="3" width="90%"><p id="gundongspan"><%= sysset.gundonggonggao %></p></MARQUEE>
+            </div>
+            <div class="middle-ctn">
+                <script>
+                    Middle_Height();
+                </script>
+                <div class="chat">
+                    <script>
+                        Chat_Height();
+                    </script>
+                    <script>
+                        Chatul_Height();
+                    </script>
+                    <div style="height: 100%" id="Y_PubMes_Div">
+                        <ul id="message">
+
+                        </ul>
+                    </div>
+
+                    <div class="chata-top" style="display:none">
+                        <a href="javascript:;"><img src="/images/R-middle-pic03.png"/>清屏</a><a href="javascript:;"><img
+                                    src="/images/R-middle-pic04.png"/>滚动</a>
+                    </div>
+                    <div class="chata-bt" style="display:none">
+                        <a href="javascript:;"><img src="/images/R-middle-pic01.png"/>展开</a><br><a
+                                href="javascript:;"><img
+                                    src="/images/R-middle-pic03.png"/>清屏</a><a href="javascript:;"><img
+                                    src="/images/R-middle-pic04.png"/>滚动</a><a href="javascript:;">所有人</a><a
+                                href="javascript:;"><img
+                                    src="/images/R-middle-pic01.png"/>隐藏</a><a href="javascript:;">快捷回复</a>
+                    </div>
+
+                    <input type="hidden" id="userlevel" value="<%= user.level %>">
+                    <input type="hidden" id="username" value="<%= user.nick_name %>">
+
+                    <% if(user._id == "" || user._id == null){ %>
+                    <input type="hidden" id="userid" value="">
+                    <% }else{ %>
+                    <input type="hidden" id="userid" value="<%= user._id %>">
+                    <% } %>
+
+                </div>
+                <div class="lecturer" style="display:none;">
+                    <dl>
+                        <dt><img src="/images/lecturer-pic01.jpg"/></dt>
+                        <dd><h2>融金讲师--飘逸</h2>
+
+                            <p>
+                                年的从业经验，主要致力于黄金、白银、外汇等投资品种的研究，有一定的实盘操作经验和一定的交易观点。对国际金融行情的变化有一定的见解。对一些常见的指标有一定的研究。交易就是娱乐，在娱乐中赚钱，成为一个“逍遥派”的掌门人。操作思路上：长短线结合，同类产品的对冲。</p>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/images/lecturer-pic02.jpg"/></dt>
+                        <dd><h2>融金讲师--飘逸</h2>
+
+                            <p>
+                                年的从业经验，主要致力于黄金、白银、外汇等投资品种的研究，有一定的实盘操作经验和一定的交易观点。对国际金融行情的变化有一定的见解。对一些常见的指标有一定的研究。交易就是娱乐，在娱乐中赚钱，成为一个“逍遥派”的掌门人。操作思路上：长短线结合，同类产品的对冲。</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="send-out">
+            <span class="AllowMsg"><image src="../images/Support_chat_talk.png"></image>对<select id="sel">
+                </select>说</span>
+            <span class="emotion" id="emotion"><img class="head_picture" src="/images/r-middle-pic07.png">表情</span>
+            <input class="send-text" id="Y_iSend_Input" type="text" maxlength="100" value="">
+            <input id="Y_iSend_Bt" class="out_text" onclick="CHAT.submit();" type="button" value="发送"/>
+        </div>
+    </div>
+
+    <!--弹出注册 register -->
+    <form class="form-horizontal  layer_notice hidden" action="doregister" method="post" id="alertRegister">
+        <ul class="registerForm">
+            <li class="formLi">
+                <div class="formLiLeft">
+                    登录账号：
+                </div>
+                <div class="formLiRight">
+                    <input id="Name1" class="formInput" name="name" type="text" placeholder="账号"/>
+                </div>
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+                    手机号：
+                </div>
+                <div class="formLiRight">
+                    <input id="mobile" class="formInput" name="mobile" maxlength="11" type="text" placeholder="手机号"/>
+                </div>
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+                    密码：
+                </div>
+                <div class="formLiRight">
+                    <input id="password" class="formInput" name="password" type="password" placeholder="输入密码"/>
+                </div>
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+                    再次输入密码：
+                </div>
+                <div class="formLiRight">
+                    <input id="password1" class="formInput" name="password1" type="password" placeholder="再次输入密码"/>
+                </div>
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+                    验证码：
+                </div>
+                <div class="formLiRightCK">
+                    <div class="tipInputBox">
+                    <span class="imgAuthCodeBox" style="z-index: 116;">
+                        <input maxlength="5" style="float: left; border-color: rgb(189, 206, 214);" type="text"
+                               class="formInputCK" id="input"/>
+                        <span>
+                            <input type="button" class="code" id="code" onclick="createCode()"/>
+                        </span>
+                    </span>
+                    </div>
+                    <div class="formInfo">
+                        输入图片中的字符，区分大小写。
+                        <a class="llr" onclick="createCode();" href="javascript:void(0)">
+                            换一张
+                        </a>
+                    </div>
+                </div>
+
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+
+                </div>
+                <div class="formLiRightRegister">
+                    <span class="llm">已有账号，马上<a class="llr" href="/login">登录</a></span>
+                </div>
+
+            </li>
+            <li class="formLi">
+                <div class="formLiLeft">
+
+                </div>
+                <div class="formLiRegister">
+                    <a id="btnSub1" class="pngfix btn btn-info pull-right closeBtn" onclick="checkForm()">注册</a>
+                </div>
+
+            </li>
+        </ul>
+        <!-- /.box-footer -->
+    </form>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('.emotion').qqFace({
+                assign: 'Y_iSend_Input', //给输入框赋值
+                path: '/face/'    //表情图片存放的路径
+            });
+
+        });
+
+        $("#Y_PubMes_Div").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            }
+        });
+        $("#userlist").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            }
+        });
+        $(function () {
+            var $div_li = $(".chat-lecturer > ul li");
+            $div_li.click(function () {
+                $(this).addClass("select")
+                        .siblings().removeClass("select");
+                var index = $div_li.index(this);
+                $(".middle-ctn > div")
+                        .eq(index).show()
+                        .siblings().hide();
+            })
+        })
+    </script>
+    <!--R-middle end-->
+
+</div>
+
+<!--R-main end-->
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/client.js"></script>
+<script type="text/javascript" src="/js/jquery-browser.js"></script>
+<script type="text/javascript">
+
+
+    //游客登录 5分钟弹出用户注册
+    window.onload = function () {
+
+
+        createCode();
+        if ($('#userlevel').val() == 77) {
+            setTimeout("register()", "300000");
+        }
+    }
+
+    function register() {
+        $('#alertRegister').removeClass('hidden');
+        layer.open({
+            type: 1,
+            // skin: 'layui-layer-rim',
+            shade: false,
+            title: ["用户注册", 'font-size:18px;background-color:rgb(204, 204, 221);text-align:center;'], //不显示标题
+            content: $('#alertRegister'), //捕获的元素
+            area: ["500px", "500px"],
+            cancel: function (index) {
+                layer.close(index);
+            },
+            scrollbar: false
+        });
+    }
+
+    var code; //在全局定义验证码
+    //产生验证码
+
+
+    function createCode() {
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var checkCode = document.getElementById("code");
+        var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+                'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');//随机数
+        for (var i = 0; i < codeLength; i++) {//循环操作
+            var index = Math.floor(Math.random() * 36);//取得随机数的索引（0~35）
+            code += random[index];//根据索引取得随机数加到code上
+        }
+        checkCode.value = code;//把code值赋给验证码
+    }
+    //校验验证码
+    function validate() {
+        var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写
+        if (inputCode.length <= 0) { //若输入的验证码长度为0
+            layer.tips('请输入验证码！', $("#input")); //则弹出请输入验证码
+        }
+        else if (inputCode != code) { //若输入的验证码与产生的验证码不一致时
+            layer.tips('验证码输入错误！', $("#input")); //则弹出验证码输入错误
+            createCode();//刷新验证码
+            document.getElementById("input").value = "";//清空文本框
+        }
+        else { //输入正确时
+            //alert("验证成功"); //弹出验证成功
+        }
+    }
+
+    //AJAX 验证用户名
+    $("#Name1").blur(function () {
+        var parmets = {
+            name: $("#Name1").val()
+        }
+        $.ajax({
+            url: 'docheckregister',
+            type: 'POST',
+            data: parmets,
+            success: function (returndata) {
+                if (returndata == "") {
+                    // alert("可以添加该用户");
+                }
+                else {
+                    layer.tips('用户名已存在！', $("#Name1"));
+                    $("#Name1").val("");
+                }
+            },
+            error: function (returndatas) {
+                layer.tips('注册失败！', $("#Name1"));
+            }
+        });
+    })
+
+    function checkForm() {
+
+        if ($("#Name1").val() == "" || $("#Name1").val() == "如name@example.com") {
+            layer.tips('账户不能为空！', $("#Name1"));
+            return false;
+        }
+        else if ($("#mobile").val() == "") {
+            layer.tips('手机号不能为空！', $("#mobile"));
+            return false;
+        }
+        else if (!$("#mobile").val().match(/^(13[0-9]|14(5|7)|15(0|1|2|3|5|6|7|8|9)|18[0-9])\d{8}$/)) {
+            layer.tips('手机号码输入格式有误，请重新输入！', $("#mobile"));
+            return false;
+        }
+        else if ($("#password").val() == "") {
+            layer.tips('密码不能为空！', $("#password"));
+            return false;
+        }
+        else if ($("#password1").val() == "") {
+            layer.tips('密码不能为空！', $("#password1"));
+            return false;
+        }
+        else if ($("#password1").val() != $("#password").val()) {
+            layer.tips('两次密码输入不一致，请重新输入！', $("#password1"));
+            $("#password1").val("");
+            $("#password").val("");
+            return false;
+        }
+
+        validate();
+
+        document.getElementById('alertRegister').submit();
+    }
+
+    //获取IP
+    var url = "http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_=" + Math.random();
+    var jqxhr = $.getJSON(url,
+            function (data) {
+                //alert(data.Ip);
+                $('#ip').val(data.Ip);
+            })
+            .error(function () {
+                alert("error");
+            })
+
+
+    function getChat(){
+        var obj_lis = document.getElementById("User_List").getElementsByTagName("li");
+
+        for(var i=0;i < obj_lis.length;i++){
+
+            obj_lis[i].onclick = function(){
+                var innerValue=this.innerHTML;
+                $('#allowChat').val(innerValue);
+                alert($('#allowChat').val());
+                var old=innerValue.match(/<span[^>]*>[^<]*?<\/span>/);
+
+                var selUser ='<option >'+old+'</option>';
+                 selUser +='<option value="all">所有人</option>';
+                $('#sel').html(selUser);
+            }
+        }
+    }
+
+    setInterval("getChat()", "1000");
+
+    $(function () {
+        // CHAT.init();
+        CHAT.usernameSubmit();
+
+    })
+
+</script>
+</body>
+</html>

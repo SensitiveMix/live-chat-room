@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>用户注册</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+
+    <meta content="edge" http-equiv="X-UA-Compatible">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <meta content="all" name="robots">
+    <!--<link href="/Content/Reg/base.css" rel="stylesheet">-->
+    <!--<link href="/Content/Reg/reg.css" rel="stylesheet">-->
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    <link href="/stylesheets/register_1.css" rel="stylesheet" type="text/css"/>
+    <!--<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>-->
+    <script src="../layer-v2.2/layer/layer.js"></script>
+    <script src="/js/teacher.js"></script>
+</head>
+<body>
+<!--header star-->
+
+<!--header end-->
+<!--main-register star-->
+<div class="main-register">
+    <!--form star-->
+    <form id="login_frm" method="post" action="doregister">
+        <div class="form">
+            <div class="form-ctn">
+
+                <h2>用户注册</h2>
+                <input id="Name1" name="name" type="text" placeholder="账号"/>
+                <!--<script type="text/javascript">-->
+
+                <!--</script>-->
+                <input id="mobile" name="mobile" maxlength="11" type="text" placeholder="手机号"/>
+                <!--<font color="red">*</font>验证码：-->
+                <!--<input type="text" id="checkCode" name="checkCode" size="6"/>-->
+                <!--<input id="btnSendCode" type="button" value="发送验证码" onclick="sendMessage()" />-->
+
+                <input id="password" name="password"  type="password" placeholder="输入密码"/>
+                <input id="password1" name="password1"  type="password" placeholder="再次输入密码"/>
+
+                <input type = "text" id = "input"/>
+                <input type="button" id="code" onclick="createCode()"/>
+                <label><span>已有账号，立即<a id="login_1" href="/login">登录</a></span></label>
+                <a id="btnSub1" class="pngfix" onclick="checkForm()">注册</a>
+
+            </div>
+        </div>
+    </form>
+    <!--form end-->
+    <!--<p>@2015&nbsp;&nbsp;&nbsp;&nbsp;现货投资宝直播室-&#45;&#45;在线喊单-在线培训-在线开户-白银投资24小时视频直播  深圳石油化工交易所，天津贵金属交易所，宁波大宗商品交易所授权指定数学直播平台</p>-->
+</div>
+<script type="text/javascript">
+    /*-------------------------------------------*/
+    var InterValObj; //timer变量，控制时间
+    var count = 120; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    var code = ""; //验证码
+    var codeLength = 6;//验证码长度
+    function sendMessage() {
+        curCount = count;
+        var phone=$("#mobile").val();//手机号码
+        if(phone != ""){
+            //产生验证码
+            for (var i = 0; i < codeLength; i++) {
+                code += parseInt(Math.random() * 9).toString();
+            }
+            //设置button效果，开始计时
+            $("#btnSendCode").attr("disabled", "true");
+            $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+
+            var data={
+                phone:phone,
+                code:code
+            }
+
+            //向后台发送处理数据
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "text", //数据格式:JSON
+                url: 'sendMessage', //目标地址
+                data: data,
+                error: function (XMLHttpRequest, textStatus, errorThrown) { },
+                success: function (msg){ }
+            });
+        }else{
+            alert("手机号码不能为空！");
+        }
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+            code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+        }
+    }
+</script>
+<script>
+    <%-scji %>
+
+    var code ; //在全局定义验证码
+    //产生验证码
+    window.onload = createCode();
+
+    function createCode(){
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var checkCode = document.getElementById("code");
+        var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+                'S','T','U','V','W','X','Y','Z');//随机数
+        for(var i = 0; i < codeLength; i++) {//循环操作
+            var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+            code += random[index];//根据索引取得随机数加到code上
+        }
+        checkCode.value = code;//把code值赋给验证码
+    }
+    //校验验证码
+    function validate(){
+        var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写
+        if(inputCode.length <= 0) { //若输入的验证码长度为0
+            layer.tips('请输入验证码！', $("#input")); //则弹出请输入验证码
+        }
+        else if(inputCode != code ) { //若输入的验证码与产生的验证码不一致时
+            layer.tips('验证码输入错误！', $("#input")); //则弹出验证码输入错误
+            createCode();//刷新验证码
+            document.getElementById("input").value = "";//清空文本框
+        }
+        else { //输入正确时
+            //alert("验证成功"); //弹出验证成功
+        }
+    }
+
+    //AJAX 验证用户名
+    $("#Name1").blur(function () {
+        var parmets = {
+            name: $("#Name1").val()
+        }
+        $.ajax({
+            url: 'docheckregister',
+            type: 'POST',
+            data: parmets,
+            success: function (returndata) {
+                if (returndata == "") {
+                    // alert("可以添加该用户");
+                }
+                else {
+                    layer.tips('用户名已存在！', $("#Name1"));
+                    $("#Name1").val("");
+                }
+            },
+            error: function (returndatas) {
+                layer.tips('注册失败！', $("#Name1"));
+            }
+        });
+    })
+
+
+    function checkForm() {
+
+        if ($("#Name1").val() == "" || $("#Name1").val() == "如name@example.com") {
+            layer.tips('账户不能为空！', $("#Name1"));
+            return false;
+        }
+        else if ($("#mobile").val() == "") {
+            layer.tips('手机号不能为空！', $("#mobile"));
+            return false;
+        }
+        else if (!$("#mobile").val().match(/^(13[0-9]|14(5|7)|15(0|1|2|3|5|6|7|8|9)|18[0-9])\d{8}$/)) {
+            layer.tips('手机号码输入格式有误，请重新输入！', $("#mobile"));
+            return false;
+        }
+        else if ($("#password").val() == "") {
+            layer.tips('密码不能为空！', $("#password"));
+            return false;
+        }
+        else if ($("#password1").val() == "") {
+            layer.tips('密码不能为空！', $("#password1"));
+            return false;
+        }
+        else if ($("#password1").val() != $("#password").val()) {
+            layer.tips('两次密码输入不一致，请重新输入！', $("#password1"));
+            $("#password1").val("");
+            $("#password").val("");
+            return false;
+        }
+
+        validate();
+
+
+        document.getElementById('login_frm').submit();
+    }
+</script>
+<!--main-register end-->
+</body>
+</html>

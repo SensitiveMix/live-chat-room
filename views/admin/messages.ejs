@@ -1,0 +1,94 @@
+<% layout('admin/master.ejs')%>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!--<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">-->
+<link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css">
+<link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css">
+
+<div class="box box-success direct-chat direct-chat-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">消息审核</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+
+    <div class="box-body">
+        <form id="changeName" action="dosysset" method="post" class="form-horizontal">
+            <div style="height: 840px" class="direct-chat-messages" id="Y_PubMes_Div">
+                <ul id="message" class="direct-chat-msg">
+
+                </ul>
+            </div>
+
+        </form>
+    </div>
+    <!-- /.box-body -->
+
+</div>
+<script src="http://139.196.203.21:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/clientofmessage.js"></script>
+<script type="text/javascript">
+
+    function replace_em(str){
+        str = str.replace(/\</g, '<;');
+        str = str.replace(/\>/g, '>;');
+        str = str.replace(/\n/g, '<;br/>;');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="/face/$1.gif" border="0" />');
+        return str;
+    };
+
+    $(function(){
+
+        CHAT.init();
+
+        <% messagevalue.forEach(function(messagevalue){ %>
+
+            var content=replace_em("<%=messagevalue.content%>");
+            var isme = true;
+            var timeSpan = '<span class="a"><%=messagevalue.date%></span>&nbsp&nbsp&nbsp';
+            var imgoflevel = '<img class="Role Manager2" src="/images/' + <%=messagevalue.level%>  + '.png">&nbsp&nbsp';
+            var contentDiv = '<a class="u" name="u" ><%=messagevalue.username%></a>&nbsp&nbsp&nbsp&nbsp';
+            var usernameDiv = '<span class="b" name="b" >'+content+' </span>&nbsp&nbsp';
+            var userlevel = '<input class="le" value="<%=messagevalue.level%>" type="hidden" name="le" ></input>';
+            var userip = '<input class="le1" value="<%=messagevalue.ip%> " type="hidden" name="le1" ></input>';
+            var userid = '<input class="id" value=" <%=messagevalue.userid%> " type="hidden" name="id" ></input>';
+            var msgid='<input class="msgid" value="<%=messagevalue.msgid%>" type="hidden" name="msgid" ></input>';
+
+            var div= document.createElement('div');
+            div.className="direct-chat-info clearfix";
+
+            var button= document.createElement('input');
+            button.className="btn btn-info pull-right";
+            button.onclick=CHAT.messsgesubmit1;
+            button.setAttribute("type","button");
+            button.setAttribute("value","通过");
+
+            var cancel= document.createElement('input');
+            cancel.className="btn btn-default pull-right";
+            cancel.onclick=CHAT.messsgecancel;
+            cancel.setAttribute("type","button");
+            cancel.setAttribute("value","驳回");
+
+            var section = document.createElement('li');
+
+            if (isme) {
+                section.className = 'user direct-chat-text';
+                section.innerHTML = timeSpan + imgoflevel + contentDiv + usernameDiv+userlevel+userip+userid+msgid;
+            } else {
+                section.className = 'service direct-chat-text';
+                section.innerHTML = timeSpan + imgoflevel + contentDiv + usernameDiv+userlevel+userip+userid+msgid;
+            }
+            section.appendChild(button);
+            section.appendChild(cancel);
+            CHAT.msgObj.appendChild(div);
+            CHAT.msgObj.appendChild(section);
+
+
+         <%
+
+        })
+        %>
+
+
+    });
+
+</script>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>直播室-老师</title>
+    <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+    <script src="/js/teacher.js"></script>
+    <script src="/js/jquery.mousewheel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.mcustomscrollbar.js"></script>
+</head>
+<body onload="CHAT.init()">
+<!--header star-->
+<div class="header">
+    <a href=""><img src="/images/header-pic01.jpg" class="lft"/></a>
+    <div class="rgt">
+        <span>您好：<label id="nicknamei"><%= user.nick_name %></label></span>|
+    </div>
+</div>
+<!--header end-->
+<!--main star-->
+<div class="main">
+    <script>
+        Rmain_Height();
+    </script>
+    <!--r-lft star-->
+    <div class="r-lft lft">
+        <a href="" class="channel"><img src="/images/R-lft-pic01.png"/>重要公告</a>
+        <ul id="User_List">
+
+        </ul>
+        <a href="" class="channel"><img src="/images/R-lft-pic03.png"/>名师简介</a>
+        <dl>
+            <dt><a href=""><img src="<%=ubelong.user_logo%>"/></a><p><%=ubelong.nick_name%><br><%=ubelong.teacher_level_name%><%=ubelong.levelname%></p></dt>
+            <dd><%=ubelong.introduce%></dd>
+        </dl>
+    </div>
+    <!--r-lft end-->
+    <!--r-rgt star-->
+    <input type="hidden" id="userlevel" value="<%= user.level %>">
+    <input type="hidden" id="userid" value="<%= user._id %>">
+    <input type="hidden" id="belong" value="<%= user.belong %>">
+    <div class="r-rgt rgt">
+        <a href="" class="channel"><img src="/images/r-rgt-pic01.png"/>客户问答</a>
+        <div class="r-rgt-top">
+            <script>
+                Rgttop_Height();
+            </script>
+            <div id="usermessage" style="overflow:auto;">
+            <ul id="message">
+            </ul>
+            </div>
+            <script>
+                Rgttop_Height1();
+            </script>
+        </div>
+        <div class="r-rgt-btn"><a href=""><img src="/images/r-rgt-pic03.jpg"/></a></div>
+    </div>
+    <!--r-rgt end-->
+    <!--r-middle star-->
+    <div class="r-middle">
+        <a href="" class="channel"><img src="/images/r-middle-pic01.png"/>老师答疑</a>
+        <div class="middle-top">
+            <script>
+                Middle_Height();
+            </script>
+            <div id="msmelist" style="overflow:auto;">
+            <ul id="mastermessage" >
+          </ul>
+            </div>
+            <script>
+                Middle_Height1();
+            </script>
+        </div>
+        <div class="middle-btn">
+            <div class="middle-btn-top"><p><img src="/images/r-middle-pic04.png"/>点击咨询老师助理，<span>免费</span>领取投资宝典</p><a href=""><img src="/images/r-middle-pic05.png" class="a"/></a><a href=""><img src="/images/r-middle-pic06.png"/></a><a href=""><img src="/images/r-middle-pic06.png"/></a><a href=""><img src="/images/r-middle-pic06.png"/></a></div>
+            <div class="middle-btn-ctr">
+                <select id="sel">
+                </select>
+               <div class="disable:none"> <a href=""><img src="/images/r-middle-pic07.png"/>表情</a><a href=""><img src="/images/r-middle-pic08.png"/>彩条</a><a href=""><img src="/images/r-middle-pic09.png"/>图片</a><a href=""><img src="/images/r-middle-pic10.png"/>清屏</a></div>
+            </div>
+
+                <input id="Y_iSend_Input" class="send-text" type="text" maxlength="100" value="">
+                <input class="out_text" type="button" onclick="CHAT.submit();" value="发送">
+        </div>
+    </div>
+    <!--r-middle end-->
+</div>
+<!--main end-->
+</body>
+<script src="http://139.196.164.208:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/client.js" charset="utf-8"></script>
+<script>
+    (function($){
+        $(window).load(function(){
+            $("#usermessage").mCustomScrollbar();
+            $("#msmelist").mCustomScrollbar();
+        });
+
+
+    })(jQuery);
+</script>
+</html>

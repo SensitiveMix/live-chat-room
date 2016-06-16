@@ -1,0 +1,752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><%=sysset.room_name%></title>
+    <meta content="width=device-width, initial-scale=1,user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta content="edge" http-equiv="X-UA-Compatible">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <meta content="all" name="robots">
+    <script language="javascript" type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jqrange.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/cookies.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/msclass.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/rkeys.js"></script>
+    <!--tip start-->
+    <script language="javascript" type="text/javascript" src="/js/jquery.qtip.js"></script>
+    <!--tip end-->
+
+
+    <script language="javascript" type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.mcustomscrollbar.js"></script>
+    <script src="/js/jquery.mousewheel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/js/swfobject.js"></script>
+    <!--[if IE 6]>
+    <script type="text/javascript">
+        _Config.isIE6 = true;
+    </script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" media="all">
+</head>
+<body onload="CHAT.usernameSubmit();">
+<script>
+    if(document.body.clientWidth < 1152)
+    {
+        document.write("<style>.Y_Show{display:none;}</style>");
+    }
+</script>
+<!--header-->
+<div id="bgg"></div>
+<!--topnav-->
+<div class="topnav">
+    <div class="topnav-area">
+        <h1 style="color: rgb(255, 255, 255); margin-top: 13px; float: right;">客服电话:400-629-8816</h1>
+        <div style="display: none;" class="logined" id="logined">
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div class="select"><a href="" class="selected js_helpitem"><span class="">退出</span></a></div>
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div id="qqkfbt" class="select"><a id="qqkfbta" href="javascript:void(0)" onclick="QQKF.Show()" class="selected js_helpitem"><span class="ico"><!-- 箭头 --></span></a></div>
+            <div id="CompanyZone" style="display: none;">
+                <span class="link-split"><!-- 分隔线 --></span>
+                <div class="select"><a href="" class="selected js_helpitem" target="_top"><span class="">机构中心</span><span class="ico"><!-- 箭头 --></span></a></div>
+            </div>
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div class="select">
+                <a href="javascript:void(0)" class="selected js_helpitem"><span class="">余额：</span><span id="UserMoney">0</span><span class="ico"><!-- 箭头 --></span></a>
+
+            </div>
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div class="miniaccount" id="userinfo_zone">
+                <a class="userlabel member-dark-bg" target="_top" href="" id="layer_userinfo">
+                    <img onerror="this.src='images/DefaultFace.png';this.onerror=null;" src="/images/defaultface.png" class="minihead" height="22" width="22">
+                    <span class="username"><span class="js-breadcrumb-name" id="i_Uname">游客3fixc154 (3fixc154)</span></span>
+                </a>
+
+            </div>
+        </div>
+        <!--./logined-->
+        <div class="unlogin" id="unlogin" style="display: block;">
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div id="qqkfbt1" class="select">
+                <a id="qqkfbtb" href="javascript:void(0)" onclick="QQKF.Show()" class="selected js_helpitem"><span class="ico"><!-- 箭头 --></span><span class="">客服</span></a>
+            </div>
+            <input type="hidden" id="userlevel" value="<%=user.level%>">
+            <span class="link-split"><!-- 分隔线 --></span>
+            <div class="select">
+                <a id="regBt" href="javascript:void(0)" class="selected js_helpitem"><span class=""><%=user.nick_name%></span><span class="ico"><!-- 箭头 --></span></a>
+            </div>
+            <span class="link-split">分隔线</span>
+            <!--<div class="select">
+                <a id="loginBt" href="javascript:void(0)" onclick="Login.Show();" class="selected js_helpitem"><span class="">登录</span><span class="ico"><!-- 箭头 --></span></a>
+        </div>-->
+    </div>
+    <!--./unlogin-->
+
+</div>
+</div>
+<div style="height: 882px;" class="Page">
+    <div class="room-title">
+        <a id="RoomPicA" width="10%" href=""><img id="RoomPic" class="png" onerror="this.src='images/DefaultRoom.png';this.onerror=null;" src="<%=sysset.room_logo%>"></a>
+        <script>
+            $("#RoomPicA").fancybox();
+        </script>
+        <span id="RoomName" title="房间号：7000"><%=sysset.room_name%></span>
+        <div id="RoomSet">
+            <span class="link-split"><!--分隔线--></span>
+            <div id="ViewPointBT">
+                <span class="ViewPointBT_Span">讲师观点</span>
+                <span class="ViewPointBT_N"></span>
+                <!--讲师观点-->
+                <div id="ViewPoint_Zoom">
+                    <div id="ViewPoint">
+                        <div class="mCustomScrollbar _mCS_1" id="ViewPoint_List"><div class="mCustomScrollBox mCS-light" id="mCSB_1" style="position: relative; height: 100%; overflow: hidden; max-width: 100%;"><div class="mCSB_container mCS_touch mCS_no_scrollbar" style="position: relative; top: 0px;">
+                                    <table class="ViewPoint_TB" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody><tr>
+                                            <th align="center" width="10%">时间</th>
+                                            <th align="center" width="10%">重要</th>
+                                            <th style="text-indent: 10px; text-align: left;">内容</th>
+                                            <th class="td-publish" width="8%"><a id="ViewPointPub" class="Del" href="">发布</a></th>
+                                        </tr></tbody>
+                                        <tbody id="ViewPoint_Tbody">
+                                        <tr id="td-date-2016-2-16"><td colspan="4" class="td-date"><strong>星期二, 2月16</strong></td></tr>
+                                        <tr id="ViewPoint3498" t="ViewPoint613cd618a93d97813f19b7ba982da24a">
+                                            <td class="td-time">20:08</td>
+                                            <td><span class="td-grade high" title="高">&nbsp;</span></td>
+                                            <td class="td-content">
+                                                <a href="javascript:void(0)">从长线来看仍适宜以较轻仓位比例对待，建议继续坚持逢高放空与逢低做多相结合的操作思路</a>
+                                            </td>
+                                            <td><a class="Del" href="javascript:void(0)" onclick="ViewPoint_Del(3498)">删除</a></td>
+                                        </tr>
+                                        <tr id="td-date-2015-10-12"><td colspan="4" class="td-date"><strong>星期一, 2015年10月12</strong></td></tr>
+                                        <tr id="ViewPoint1627" t="ViewPoint0efcc9f32d8c3b0a999749c0f55a4ed4">
+                                            <td class="td-time">10:37</td>
+                                            <td><span class="td-grade middle" title="中">&nbsp;</span></td>
+                                            <td class="td-content">
+                                                <a href="javascript:void(0)">现货白银在上一交易日冲高回落后暂时失去发动急速上涨的动力，行情自3300整数关口遇阻，建议投资者考虑逢高放空的操作思路</a>
+                                            </td>
+                                            <td><a class="Del" href="javascript:void(0)" onclick="ViewPoint_Del(1627)">删除</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div></div>
+                    </div>
+                </div>
+                <!--讲师观点 结束-->
+            </div>
+            <span class="link-split"><!--分隔线--></span>
+            <div id="MonitorDataBT">
+                <span class="MonitorDataBT_Span" onclick="">财经日历</span>
+                <!--今日财经信息-->
+                <div id="MonitorData_Zoom">
+                    <!--国际开始-->
+                    <div id="World" class="MonitorData_List_Zoom Current" style="overflow: hidden;">
+                        <div id="WorldList" style="position: relative; overflow: auto; height: 885px;">
+                            <iframe id="iframe"  height="8000px"  width="100%"  frameborder="0" scrolling="no" src="http://www.jin10.com/jin10.com.html"></iframe>
+                        </div>
+                    </div>
+                    <!--国际结束-->
+                </div>
+                <!--今日财经信息 结束-->
+            </div>
+            <span class="link-split"><!--分隔线--></span>
+
+            <a id="FeedBT" class="png" href="javascript:void(0)" onclick="FeedRoom(this)" title="订阅喊单">订阅</a><span class="link-split"><!--分隔线--></span>
+            <a id="CourseBT" href="201507221436196108.jpg" target="_top">课程介绍</a><span class="link-split"><!--分隔线--></span>
+            <script>
+                $('#CourseBT').fancybox();
+            </script>
+            <a id="ShortCutBT" class="png" href="" title="保存到桌面">保存到桌面</a>
+            <!--Baidu分享开始-->
+            <div data-bd-bind="1457948016634" class="bdsharebuttonbox bdshare-button-style0-16" style="float: left; padding-left: 9px;"><a style="float:none;line-height:45px;" href="#" class="bds_more" data-cmd="more"></a><!--a style="float:none;line-height:45px;" title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a--><a style="float:none;line-height:45px;" title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a style="float:none;line-height:45px;" title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><!--a style="float:none;line-height:45px;" title="分享到和讯微博" href="#" class="bds_thx" data-cmd="thx"></a--></div>
+            <script>
+                window._bd_share_config={"common":{"bdSnsKey":{},"bdComment":"实盘喊单与讲评，在线视频语音社区，最活跃的专业力量！","bdDesc":"找到一个特别好的视频实盘喊单的社区，大家来看看吧！","bdText":"","bdUrl":location.href,"bdMini":"2","bdMiniList":false,"bdPic":"/userupload/roomlogo/day_150902/201509021125171872.png","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+            </script>
+            <!--Baidu分享结束-->
+        </div>
+    </div>
+    <!--main-->
+    <div style="height: 870px;" class="Y_Main">
+
+
+        <div class="Y_Left" style="margin-right: 0px; margin-left: 0px;">
+            <div id="Y_Left_Models"></div>
+            <!--Y_Model_Control-->
+            <div class="Y_Model_Control">
+                <form action="" onsubmit="return false;" class="Y_Model_Form">
+							<span class="SearchInput">
+								<input name="key" value="搜索" onkeyup="SearchPerson()" onblur="this.str='搜索';if(this.value==''){this.value=this.str}" onfocus="this.str='搜索'; if(this.value==this.str){this.value=''}" style="_margin-top:0px;" class="SearchKey" id="SearchKey" type="text">
+							</span>
+                    <a class="SearchSubmit" href="javascript:SearchPerson();">搜索</a>
+                </form>
+						<span class="ModelButton" id="ModelButton">
+							<a class="Button" href="javascript:void(0)" onclick="ShowModelList()">自由发言</a>
+							<em class="Split"></em>
+							<a class="Down" href="javascript:void(0)" onclick="ShowModelList()">更多模式</a>
+						</span>
+                <div id="ModelList" class="ModelList">
+							<span class="ModelButtonList" id="ModelButtonList_1">
+								<a class="Button" mt="1" href="javascript:void(0)" onclick="ChangeModeTypeHandler(this)">自由发言</a>
+							</span>
+							<span class="ModelButtonList" id="ModelButtonList_2">
+								<a class="Button" mt="2" href="javascript:void(0)" onclick="ChangeModeTypeHandler(this)">主席模式</a>
+							</span>
+							<span class="ModelButtonList" id="ModelButtonList_3">
+								<a class="Button" mt="3" href="javascript:void(0)" onclick="ChangeModeTypeHandler(this)">麦序模式</a>
+							</span>
+                </div>
+						<span class="ToolButton" id="ToolButton">
+							<a class="ControlManager" href="javascript:void(0)" onclick="ShowManager()" title="">管理员</a>
+							<em class="Split"></em>
+							<a class="ControlAllUser" href="javascript:void(0)" onclick="ShowListAnimate(0)" title="">用户列表</a>
+							<em class="Split"></em>
+							<a class="ControlFriends" href="javascript:void(0)" onclick="ShowCustomer()" title="">我的客户<span id="CustomerNum">0</span></a>
+						</span>
+            </div>
+            <!--Y_MicShowList-->
+            <div id="Y_MicShowList">
+                <div class="control">
+                    <a id="Mic_Status" class="status" href="javascript:void(0)">状态</a>
+                    <a id="Mic_AddTime" href="javascript:void(0)" onclick="AddMicTime()" title="">加时</a>
+                    <a id="Mic_ClearList" href="javascript:void(0)" onclick="ClearMicList()" title="">清麦</a>
+                    <a id="Mic_Manage" href="javascript:void(0)" onclick="MicManage()" title="">控麦</a>
+                    <a id="Mic_StopApply" href="javascript:void(0)" onclick="StopApply()" title="">禁麦</a>
+                    <a id="Mic_Apply" href="javascript:void(0)" onclick="ApplyMicList()" title="">抢麦</a>
+                    <a id="MicListHaveTime" href="javascript:void(0)">0s</a>
+                </div>
+                <div class="" id="MicShowList">
+                    <ul id="MicList">
+                    </ul>
+                </div>
+            </div><!--Y_MicShowList-->
+            <!--Y_List-->
+            <div style="height: 771px;" id="Y_List">
+                <!--Y_User_List-->
+                <div style="height: 771px;" id="Y_User_List">
+                    <ul id="User_List">
+                    </ul>
+                </div>
+                <!--/.Y_User_List-->
+                <!--Y_Friend_List-->
+                <!--/.Y_Friend_List-->
+            </div>
+            <!--/.Y_List-->
+            <div class="Y_Global_Control">
+                <div class="Y_Global_Control_Ad"></div>
+
+            </div>
+            <!--/.Y_Global_Control-->
+
+        </div><!--/.Y_Left-->
+        <div class="Y_Show" style="width: 278px;">
+            <div id="Y_Quotation" class="Y_Quotation">
+                <div class="Y_Quotation_Content">
+                    <div id="XAU">
+                        <i class="a">现货黄金</i>
+                        <i id="XAUUSD_B" class="b">--</i>
+                        <i id="XAUUSD_P" class="c">--</i>
+                    </div>
+                    <div id="XAG">
+                        <i class="a">现货白银</i>
+                        <i id="XAGUSD_B" class="b">--</i>
+                        <i id="XAGUSD_P" class="c">--</i>
+                    </div>
+                    <div id="USOIL">
+                        <i class="a">美国原油</i>
+                        <i id="USOIL_B" class="b">--</i>
+                        <i id="USOIL_P" class="c">--</i>
+                    </div>
+                    <div id="DXY">
+                        <i class="a">美元指数</i>
+                        <i id="DXY_B" class="b">--</i>
+                        <i id="DXY_P" class="c">--</i>
+                    </div>
+                </div>
+            </div>
+            <div id="Y_Position" class="Y_Position">
+                <div class="Y_Position_Title" title="可更换态度">我的态度<label></label></div>
+                <div class="Y_Position_Content">
+                    <div id="VoteOp1" class="VoteUp" c="1" n="看涨">
+                        <i class="a"><b>0</b>%看涨</i>
+                        <i class="b"><label>0</label>票</i>
+                        <span>+1 票</span>
+                    </div>
+                    <div id="VoteOp3" class="VoteDown" c="3" n="看跌">
+                        <i style="margin-top: 0px;" t="" class="a"><b>0</b>%看跌</i>
+                        <i class="b"><label>0</label>票</i>
+                        <span>+1 票</span>
+                    </div>
+                    <div id="VoteOp2" c="2" n="盘整">
+                        <i style="margin-top: 0px;" t="" class="a"><b>0</b>%盘整</i>
+                        <i class="b"><label>0</label>票</i>
+                        <span>+1 票</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Y_Doc" class="Y_Doc mCustomScrollbar _mCS_5"><div class="mCustomScrollBox mCS-light" id="mCSB_5" style="position: relative; height: 100%; overflow: hidden; max-width: 100%;"><div class="mCSB_container mCS_touch" style="position: relative; top: 0px;">
+                        <div class="Y_Doc_Content">
+                            <a style="background: transparent url('/images/201507221441017822.png') no-repeat scroll center top;" href="" target="_top" title="">客户服务</a>
+                            <a style="background: transparent url('/images/201507221441236032.png') no-repeat scroll center top;" href="" target="_top" title="">招商加盟</a>
+                            <a style="background: transparent url('/images/201507221441489285.png') no-repeat scroll center top;" href="" target="_top" title="">注册会员</a>
+                            <a style="background: transparent url('/images/201507221442082318.png') no-repeat scroll center top;" href="" target="_top" title="">获取软件</a>
+                            <a style="background: transparent url('/images/201507221442337441.png') no-repeat scroll center top;" href="" target="_top" title="">交易规则</a>
+                            <a style="background: transparent url('/images/201507221443044613.png') no-repeat scroll center top;" href="" target="_top" title="">vip服务</a>
+                        </div>
+                    </div></div></div>
+
+            <div style="height: 406px; overflow: hidden; width: 278px; white-space: nowrap;" id="Y_Spread_List" class="Y_Spread_List"><table style="border-collapse: collapse; display: inline;" cellpadding="0" cellspacing="0"><tbody><tr><td style="white-space: nowrap; word-break: keep-all;" nowrap="true">
+                            <div id="Y_Spread_Content" class="Y_Spread_Content" style="width: 1112px;">
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509021123158452.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509021124315423.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509071613573473.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201511241003529069.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                            </div>
+                        </td><td style="white-space: nowrap; word-break: keep-all;" nowrap="true">
+                            <div id="Y_Spread_Content" class="Y_Spread_Content" style="width: 1112px;">
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509021123158452.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509021124315423.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201509071613573473.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                                <a href="" target="_top" title=""><img class="Spread" src="/images/pixel.gif" style="background: transparent url('/images/201511241003529069.jpg') no-repeat scroll left top; height: 406px;" title="" border="0"></a>
+                            </div>
+                        </td></tr></tbody></table></div>
+        </div>
+        <!--/.Y_Show-->
+        <div style="margin-left: 12px; width: 480px; float: left;" class="Y_Right">
+            <div class="Y_Live" id="LiveDiv">
+                <div id="Live_Title" class="title">
+                    <a style="opacity: 0; top: -35px;" id="LivePubUserInfo" uname="" uid="" href="javascript:void(0)" title="" onclick="LinkLayerClick(this)">发布人</a><span>视频直播</span>
+                    <a href="javascript:void(0)" id="LiveRefresh" onclick="LiveRefresh()" title="刷新视频">刷新</a>
+                </div>
+                <div style="height: 360px;" id="LiveArea" class="list">
+                    <div class="LiveOver">
+                        <div style="visibility: visible;" id="i_Live_Player"></div>
+                        <div class="RegBagNumBox" title="主播收到的红包">
+                            <div class="RegBagNum"><p><em></em><span>1325</span></p></div>
+                            <span class="addnum">+1</span>
+                        </div>
+                    </div>
+
+                    <div style="display: none;" id="LiveTool"><span id="LiveTool_Resize"></span></div>
+                </div>
+            </div>
+            <div style="text-align: center; font-weight: 900;">投资有风险 入市需谨慎</div>
+            <!--/.Y_Live-->
+            <div style="height: 474px;" class="Y_Right_List mCustomScrollbar _mCS_6"><div class="mCustomScrollBox mCS-light" id="mCSB_6" style="position: relative; height: 100%; overflow: hidden; max-width: 100%;"><div class="mCSB_container mCS_touch mCS_no_scrollbar" style="position: relative; top: 0px;">
+
+                        <div class="Y_Info">
+                            <ul class="Y_Notice_Nav">
+                                <li t="Y_Shouted" class="on">喊单</li>
+                                <li t="Y_Notice">公告</li>
+                                <li t="Y_About">简介</li>
+                            </ul>
+                            <div id="Y_Shouted" style="display: block;">
+                                <div style="position: relative;">
+                                    <div id="Shouted_Content" readonly="readonly">
+                                        <div class="ShoutedInfo">多空趋势：利空<br>开仓点位：0<br>平仓点位：0<br>止损点位：0<br>止盈点位：0</div>
+                                        <div class="ShoutedContent">备注：<br>现货白银依然处于弱势，建议日内在3080一线放空，3030止盈，3120止损3020做多，3060止盈，2990止损</div>
+                                    </div>
+                                    <div id="Shouted_Pre"><a href="javascript:void(0)" onclick="Shouted_Pre()" title="上一个">上一个</a></div>
+                                    <div id="Shouted_Next"><a href="javascript:void(0)" onclick="Shouted_Next()" title="下一个">下一个</a></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <span id="Shouted_Time">2015/11/5 20:05:07</span>
+                                    <a title="" id="Shouted_Person" href="" target="_top">张老师</a>
+                                    <input name="Shouted_ID" id="Shouted_ID" value="42" type="hidden">
+                                    <a class="Shouted_Content_Del" href="javascript:void(0)" onclick="Del_Shouted_Content_Click()">删除</a>
+                                    <a class="Shouted_Content_Submit" id="ShoutedBT" href="">发布</a>
+                                    <script>$('#ShoutedBT').fancybox({'titleShow':false,'autoDimensions':false,'autoScale':false,'height':360,'type':'iframe'});</script>
+                                </div>
+                            </div>
+                            <div id="Y_Notice">
+                                <div style="position: relative;">
+                                    <textarea id="Notice_Content" cols="30" rows="5" onmouseover="Content_Over(this)" onmouseout="Content_Out(this)" readonly="readonly">请认准正规平台投资有风险，入市需谨慎，选择正规平台，远离小平台：国内平台较多，具备优资质的并不多，请确认是否具备政府批文，选择合法平台。</textarea>
+                                </div>
+                                <div style="text-align: right;"><a class="Notice_Content_Submit" href="javascript:void(0)" onclick="Refresh_Notice_Content_Click()">发布</a></div>
+                            </div>
+                            <div id="Y_About">
+                                <div style="position: relative;">
+                                    <textarea id="About_Content" cols="30" rows="5" onmouseover="Content_Over(this)" onmouseout="Content_Out(this)" readonly="readonly">融金资讯直播室隶属于天津贵金属交易所120号综合会员华盛金道贵金属。目前国内平台较多，&nbsp;但具备优秀资质的并不多，请选择正规合法平台，远离小黑平台。我们每天08:00--02:00总计提供18小时的免费教学、免费喊单、免费解套，注册会员可永久尊享免费的在线学习机会，您随时提问，专家立即解答。&nbsp;^0^</textarea>
+                                </div>
+                                <div style="text-align: right;">
+                                    <a class="About_Content_Submit" href="javascript:void(0)" onclick="Refresh_About_Content_Click()">发布</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.Y_Info--><script language="javascript" type="text/javascript" src="/js/_m_systip.js"></script>
+                        <div class="Y_SysTip">
+                            <div class="title">全站广播</div>
+                            <div class="list">
+                                <ul>
+                                    <li><a href="">课程时间安排</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/.Y_SysTrip-->
+                    </div></div></div>
+        </div>
+        <!--/.Y_Right-->
+
+        <div class="Y_Middle">
+            <div style="height: 795px;" class="Y_iMessage">
+                <!--Mes_Tab1-->
+                <div id="Mes_Tab1" class="Mes_Tab Mes_Tab_On">
+                    <div id="Y_Scroll">
+                        <div style="overflow: hidden; width: 1000px; height: 27px; position: relative;">
+                            <ul style="padding: 0px; border: 0px none; font-size: 0px; display: inline-block; margin: 0px; list-style: outside none none; height: 108px; width: 1000px;" id="Y_Scroll_Ul">
+                                <li style="list-style: outside none none; display: block; clear: both;"><a href="" title="">14-17点直播房间号为7001，其他时间为7000。点此进入7001</a></li><li style="list-style: outside none none; display: block; clear: both;"><a href="" title="">任何时间访问http://v.tjrjzx.com，都能进入正确的直播房间</a></li>
+
+                                <li style="list-style: outside none none; display: block; clear: both;"><a href="" title="">14-17点直播房间号为7001，其他时间为7000。点此进入7001</a></li><li style="list-style: outside none none; display: block; clear: both;"><a href="" title="">任何时间访问http://v.tjrjzx.com，都能进入正确的直播房间</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div  style="height: 601px;" id="Y_PubMes_Div">
+                        <ul id="message">
+                        </ul>
+                    </div>
+                    <div id="Y_pub_Tools">
+                        <a href="javascript:void(0)" onclick="PubClear()"><span class="clear">清屏</span></a>
+                        <a href="javascript:void(0)" onclick="PubScroll(this)"><span class="scroll">滚动</span></a>
+                    </div>
+                    <div id="Y_Right_Tools">
+                        <a href="javascript:void(0)" class="Right_Tools_App" title="手机App下载" onclick=""><span>App</span></a>
+
+                    </div>
+                    <!--/.Y_PubMes_Div-->
+                    <div id="Y_MsgSplit"></div>
+                    <!--/.Y_MsgSplit-->
+                    <div class="" id="Y_PriMes_Div">
+                        <ul>
+                            <li class="notice" id="Welcome_Content"><span class="t">17:31 </span><span class="gary"><a target="_top" href="javascript:void(0)">24小时客服热线400-629-8816</a></span></li>
+                        </ul>
+                    </div>
+                    <!--/.Y_PriMes_Div-->
+                    <div id="Y_pri_Tools">
+                        <a href="javascript:void(0)" onclick="PriClear()"><span class="clear">清屏</span></a>
+                        <a href="javascript:void(0)" onclick="PriScroll(this)"><span class="scroll">滚动</span></a>
+                        <a href="javascript:void(0)" id="PrivatePerson"><span class="PrivatePerson">所有人</span></a>
+                        <a href="javascript:void(0)" id="RemovePrivatePerson" onclick="RemovePrivatePerson()" title="删除"><span>删除</span></a>
+                        <a href="javascript:void(0)" onclick="PriHide(this)"><span class="display">隐藏</span></a>
+                        <a href="javascript:void(0)" onclick="PriQuickReply()"><span class="Reply">快捷回复</span></a>
+                        <!-------QuickReply---------->
+                        <div id="QuickReply_Div">
+                            <table style="margin: 10px 0px 0px 10px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tbody><tr>
+                                    <td class="tabs1"><label for="QR_Name"><strong>用户名:</strong></label></td>
+                                    <td class="tabs2"><input id="QR_Name" name="QR_Name" class="inputbox" value="" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tabs1"><label for="QR_Msg"><strong>消息:</strong></label></td>
+                                    <td class="tabs2"><input id="content" name="content" class="inputbox" value="" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td class="tabs1"><label for="QR_Msg"><strong>级别:</strong></label></td>
+                                    <td class="tabs3">
+                                        <select style="width: 70px;" id="rolecss">
+                                            <option value="Vip6">神</option><option value="Vip5">皇帝</option><option value="Vip4">国王</option><option value="Vip3">亲王</option><option value="Vip2">公爵</option><option value="Vip1">侯爵</option><option value="User3">伯爵</option><option value="User2">子爵</option><option value="User1">男爵</option>
+                                        </select>
+                                        <a id="Y_iSend_FaceNew" href="javascript:void(0)" onclick="ShowFaceListNew(this)" to="Y_iSend_InputNew" title="表情">表情</a>
+                                        <div class="Y_iSend_Bt_More_ListNew" style="float: right;">
+                                            <iframe scrolling="no" src="" align="middle" frameborder="0" height="34" width="34"></iframe>
+                                        </div>
+                                        <input style="margin-left: 180px;" value="发送" class="btn" onclick="QuickReplyNew()" type="submit">
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                            <!--<a id="QuickReply_Gear" href="/handle/SetQuickReply.asp">编辑</a-->
+                            <script>
+                                //滚动条
+                                $("#Y_PubMes_Div").mCustomScrollbar({
+                                    scrollButtons:{
+                                        enable:true
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <!-------./QuickReply---------->
+                    </div>
+                    <!--/.Y_PriMes_Div-->
+                    <div id="Y_Mes_Resize"></div>
+                    <!--a id="Y_UploadPic" href="#" title="上传图片">上传图片</a-->
+
+                    <!--FlyMsg-->
+                    <div style="visibility: visible;" id="iFlyMsgPlayer"></div>
+                    <!--/.FlyMsg-->
+                </div>
+                <!--/.Mes_Tab1-->
+                <div id="Mes_Tab2" class="Mes_Tab"><iframe class="tab-frame" src="" scrolling="auto" hspace="0" frameborder="0"></iframe></div>
+                <!--Mes_TabList-->
+                <!--/.Mes_TabList-->
+                <!--MessageTabBox-->
+                <div class="MessageTabBox">
+                    <span class="on" t="1">聊天</span>
+                    <span title="讲师介绍" t="2">讲师介绍</span>
+                    <span t="n" class="TadAdd" style="display: none;"><a href="h"><img src="/images/mestadadd.png" title="新增"></a></span>
+                </div>
+                <!--/.MessageTabBox-->
+            </div>
+            <!--/.Y_iMessage-->
+            <div id="Y_iSend">
+                <form action="" onsubmit="return false;">
+                    <div class="Y_iSend_Left">
+                        <a id="Y_iSend_RedBagBt" href="javascript:void(0)" onclick="SendRedBag()" title="赠送红包（每10分钟积累一个）"><span>0</span></a>
+                        <a id="Y_iSend_Face" href="javascript:void(0)" onclick="ShowFaceList(this)" to="Y_iSend_Input" title="表情">表情</a>
+                        <a id="Y_iSend_Private" class="iSend_Private" href="javascript:void(0)" onclick="CheckPrivateMsg(this)" title="私聊">私聊</a>
+                    </div>
+                    <div class="Y_iSend_Right">
+								<span id="Y_iSend_BtSpan" class="Y_iSend_BtSpan">
+									<input id="Y_iSend_Bt" value="发送" class="btn_text" onclick="CHAT.submit();" type="button">
+									<div id="Y_iSend_Bt_More">更多
+                                        <a href="" title="更多" style="position: absolute; left: 0px; width: 34px; background: transparent none repeat scroll 0% 0%; height: 65px;">更多</a>
+                                        <div class="Y_iSend_Bt_More_List">
+                                            <iframe scrolling="no" src="" align="middle" frameborder="0" height="34" width="34"></iframe>
+                                            <!--a class="UploadMusic" href="#" title="私聊">私聊</a-->
+                                        </div>
+                                    </div>
+								</span>
+                    </div>
+                    <div class="Y_iSend_Middle">
+                        <input value="" id="Y_iSend_Input" maxlength="100" type="text">
+                    </div>
+                </form>
+            </div>
+            <!--/.Y_iSend-->
+        </div>
+        <!--/.Y_Middle-->
+        <div id="Y_ManageMenu">
+            <div class="NormalMenu">
+                <a class="Normal_View" href="javascript:void(0)" onclick="View_Info()">查看信息</a>
+                <a class="Normal_SayTo" href="javascript:void(0)" onclick="Say_To()">对TA说</a>
+                <a class="Normal_PrivateTo" href="javascript:void(0)" onclick="Private_To()">对TA私聊</a>
+            </div>
+            <div class="MangeMenu">
+                <a class="Manage_Kick" href="javascript:void(0)" onclick="Manage_Kick()">踢出1小时</a>
+                <a class="Manage_BlackKick" href="javascript:void(0)" onclick="Manage_BlackKick()">加入黑名单</a>
+                <a class="Manage_Silent" href="javascript:void(0)" onclick="Manage_Silent()">禁言5分钟</a>
+                <a class="Manage_UnSilent" href="javascript:void(0)" onclick="Manage_UnSilent()">恢复发言</a>
+                <div class="Manage_Role">
+                    设置权限
+                    <div class="Manage_Role_List">
+                        <a class="Manage_SetManager" href="javascript:void(0)" onclick="Manage_Manager()">设为管理</a>
+                        <a class="Manage_UnManager" href="javascript:void(0)" onclick="Manage_UnManager()">撤销管理</a>
+                        <a class="RoomUser4 Manage_RoomRole_A" href="javascript:void(0)" onclick="Manage_SetRoomUserRole(4)" title="">设为贵宾客户</a><a class="RoomUser3 Manage_RoomRole_A" href="javascript:void(0)" onclick="Manage_SetRoomUserRole(3)" title="">设为嘉宾客户</a><a class="RoomUser2 Manage_RoomRole_A" href="javascript:void(0)" onclick="Manage_SetRoomUserRole(2)" title="">设为普通客户</a><a class="RoomUser1 Manage_RoomRole_A" href="javascript:void(0)" onclick="Manage_SetRoomUserRole(1)" title="">设为初级客户</a>
+                    </div>
+                </div>
+                <!--/.Manage_Role-->
+            </div>
+            <div class="SaleMenu">
+                营销操作
+                <div class="SaleMenu_List">
+                    <a class="Sale_PrivatePop" href="javascript:void(0)" onclick="Sale_PrivatePop_Add()">与TA弹窗私聊</a>
+                    <a class="Sale_AddTempCustomer" href="javascript:void(0)" onclick="Sale_AddTempCustomer()">添为待开发客户</a>
+                    <a class="Sale_AddPrivateCustomer" href="javascript:void(0)" onclick="Send_PrivateApply()" title="">申请成为专属客户</a>
+                    <a class="Sale_GetQQ" href="javascript:void(0)" onclick="Sale_GetQQ()">探索该用户的QQ</a>
+                </div>
+            </div>
+            <!--/.SaleMenu-->
+        </div>
+        <!--/.Y_ManageMenu-->
+    </div>
+    <!--/.main-->
+</div>
+<!--Hide_Left--->
+<div title="" id="Hide_Left_BT" class="Hide_Left"><div class="Hide_Left_BT"><img src="/images/pixel.gif" height="100%" width="100%"></div></div>
+<!--/.Hide_Left-->
+<!--User_Card-->
+<div id="User_Card">
+</div>
+<!--/.User_Card-->
+<!--User_QQ-->
+<div id="User_QQ" class="PopBox">
+    <span onclick="Pop_Close('#User_QQ')" class="PopBox_CloseBt">关闭</span>
+</div>
+<!--/.User_QQ-->
+<!--Y_GuestRegBox-->
+<div id="Y_GuestRegBox">
+    <a href=""><img src="/images/guestreg.png"></a>
+    <span onclick="Guest_Reg_Close()" class="Guest_Reg_CloseBt">关闭</span>
+</div>
+<!--/.Y_GuestRegBox-->
+<!--Y_Vote-->
+<div class="Y_Vote" id="Y_Vote">
+    <div class="Y_Vote_Title" title="">投票 - <label></label></div>
+    <div class="Y_Vote_Content">
+        <div class="Y_Vote_Content_List">
+            <ul></ul>
+        </div>
+        <div class="Y_Vote_Content_Des">每个选项可以投1票，离投票结束还有（<label id="Y_Vote_Time">0</label>秒）</div>
+        <span class="Y_Vote_CloseBt" onclick="Y_Vote_Close()">关闭</span>
+    </div>
+</div>
+<!--/.Y_Vote-->
+<!--Y_GuestRegBox-->
+<div id="Y_PrivateApplyPop" class="Y_PrivateApplyPop">
+    <div class="PopTitle">专属客服申请</div>
+    <div class="PopContent">
+        <div class="ApplyMsg">
+            <a class="NickName" onclick="LinkLayerClick(this)" href="javascript://" uid="" uname=""> ：</a>
+            <span class="Content">申请成为您的专属客服，专属客户可享受专业的一对一贴心服务！</span>
+            <span class="Question">您是否同意升级为专属客户?</span>
+        </div>
+        <div class="Buttons">
+            <a href="javascript:void(0)" onclick="ApplyTrue()" class="PopBtTrue">确认</a><a href="javascript:void(0)" onclick="ApplyFalse()" class="PopBtFalse">拒绝</a>
+        </div>
+    </div>
+</div>
+<!--Y_GuestRegBox-->
+<!--Y_PrivatePop-->
+<div id="Y_PrivatePop" class="Y_PrivatePop">
+    <div class="PrivatePopLeft">
+        <ul>
+        </ul>
+    </div><div class="" style="position: absolute; display: none;"></div>
+    <!--PrivatePopRight-->
+    <div class="PrivatePopRight">
+        <div class="PrivatePopTitle">
+            <div class="PrivatePopUserName"><a id="PrivatePopTitle_UserName" href="#">九天</a><img title="超管" src="/images/pixel.gif" class="Role Manager3"><img src="/images/pixel.gif" title="房管" class="RM RoomManager"><img src="/images/pixel.gif" title="主播" class="RB RoomBo"><img src="/images/pixel.gif" title="" class="RoomUserRole "></div>
+            <div class="PrivatePopTools"><a class="min" href="javascript:PrivatePopMin()">最小化</a></div>
+        </div>
+        <div class="PrivatePopMain">
+            <div class="PrivatePopMain_Right">
+                <img src="/images/pixel.gif" class="UserPic">
+                <div class="PrivatePopUserInfo">
+                    <span>姓名</span>
+                    <div class="PrivatePopInfo_UName">-</div>
+                    <span>性别</span>
+                    <div class="PrivatePopInfo_Sex"><img src="/images/pixel.gif"></div>
+                    <span>电话</span>
+                    <div class="PrivatePopInfo_Tel">-</div>
+                    <span>Q&nbsp;&nbsp;Q</span>
+                    <div class="PrivatePopInfo_QQ">-</div>
+                    <span>简介</span>
+                    <div class="PrivatePopInfo_About">-</div>
+                </div>
+            </div>
+            <!--PrivatePopMain_Middle-->
+            <div class="PrivatePopMain_Middle">
+                <div class="PrivatePop_MsgList">
+                </div>
+                <div class="PrivatePop_SendTools">
+                    <a href="#" class="PrivatePop_SendTools_Face" onclick="ShowFaceList(this)" to="PrivatePop_Input">表情</a>
+                </div>
+                <div class="PrivatePop_SendBox">
+                    <form action="http://v.tjrjzx.com/tyle/?7000" onsubmit="PostPrivatePopMsgSubmit();return false;" style="float: left; width: 100%;">
+                        <div class="PrivatePop_SendBox_Input">
+                            <input value="" maxlength="100" id="PrivatePop_Input" type="text">
+                        </div>
+                        <div class="PrivatePop_SendBox_Send">
+                            <input class="btn_text" value="发送" id="PrivatePop_SendBT" type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--/.PrivatePopMain_Middle-->
+        </div>
+    </div>
+    <!--/.PrivatePopRight-->
+</div>
+<!--Y_PrivatePop-->
+<!-------faces---------->
+<div id="Faces" class="FaceBox" style="display: none;">
+    <table class="tab1">
+        <tbody>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/0.gif') no-repeat scroll center center;" title="赞">赞</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/1.gif') no-repeat scroll center center;" title="up">up</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/2.gif') no-repeat scroll center center;" title="kiss">kiss</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/3.gif') no-repeat scroll center center;" title="来电">来电</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/4.gif') no-repeat scroll center center;" title="贱笑">贱笑</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/5.gif') no-repeat scroll center center;" title="陶醉">陶醉</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/6.gif') no-repeat scroll center center;" title="兴奋">兴奋</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/7.gif') no-repeat scroll center center;" title="鄙视">鄙视</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/8.gif') no-repeat scroll center center;" title="得意">得意</a></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/9.gif') no-repeat scroll center center;" title="偷笑">偷笑</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/10.gif') no-repeat scroll center center;" title="挖鼻孔">挖鼻孔</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/11.gif') no-repeat scroll center center;" title="衰">衰</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/12.gif') no-repeat scroll center center;" title="流汗">流汗</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/13.gif') no-repeat scroll center center;" title="伤心">伤心</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/14.gif') no-repeat scroll center center;" title="鬼脸">鬼脸</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/15.gif') no-repeat scroll center center;" title="狂笑">狂笑</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/16.gif') no-repeat scroll center center;" title="发呆">发呆</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/17.gif') no-repeat scroll center center;" title="害羞">害羞</a></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/18.gif') no-repeat scroll center center;" title="可怜">可怜</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/19.gif') no-repeat scroll center center;" title="气愤">气愤</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/20.gif') no-repeat scroll center center;" title="惊吓">惊吓</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/21.gif') no-repeat scroll center center;" title="困了">困了</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/22.gif') no-repeat scroll center center;" title="再见">再见</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/23.gif') no-repeat scroll center center;" title="感动">感动</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/24.gif') no-repeat scroll center center;" title="晕">晕</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/25.gif') no-repeat scroll center center;" title="可爱">可爱</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/26.gif') no-repeat scroll center center;" title="潜水">潜水</a></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/27.gif') no-repeat scroll center center;" title="强">强</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/28.gif') no-repeat scroll center center;" title="囧">囧</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/29.gif') no-repeat scroll center center;" title="窃笑">窃笑</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/30.gif') no-repeat scroll center center;" title="疑问">疑问</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/31.gif') no-repeat scroll center center;" title="装逼">装逼</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/32.gif') no-repeat scroll center center;" title="抱歉">抱歉</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/33.gif') no-repeat scroll center center;" title="鼻血">鼻血</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/34.gif') no-repeat scroll center center;" title="睡觉">睡觉</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/35.gif') no-repeat scroll center center;" title="委屈">委屈</a></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/36.gif') no-repeat scroll center center;" title="笑哈哈">笑哈哈</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/37.gif') no-repeat scroll center center;" title="贱贱地笑">贱贱地笑</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/38.gif') no-repeat scroll center center;" title="被电">被电</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/39.gif') no-repeat scroll center center;" title="转发">转发</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/40.gif') no-repeat scroll center center;" title="求关注">求关注</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/41.gif') no-repeat scroll center center;" title="路过这儿">路过这儿</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/42.gif') no-repeat scroll center center;" title="好激动">好激动</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/43.gif') no-repeat scroll center center;" title="招财">招财</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/44.gif') no-repeat scroll center center;" title="加油啦">加油啦</a></td>
+        </tr>
+        <tr>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/45.gif') no-repeat scroll center center;" title="转转">转转</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/46.gif') no-repeat scroll center center;" title="围观">围观</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/47.gif') no-repeat scroll center center;" title="推撞">推撞</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/48.gif') no-repeat scroll center center;" title="来嘛">来嘛</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/49.gif') no-repeat scroll center center;" title="啦啦啦">啦啦啦</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/50.gif') no-repeat scroll center center;" title="切克闹">切克闹</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/51.gif') no-repeat scroll center center;" title="给力">给力</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/52.gif') no-repeat scroll center center;" title="威武">威武</a></td>
+            <td><a href="javascript:void(0)" isface="1" style="background: transparent url('/images/53.gif') no-repeat scroll center center;" title="流血">流血</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-------faces---------->
+<!-------Bell---------->
+<div style="visibility: visible;" id="TBellPlayer"></div>
+<!-------./Bell---------->
+<!--QQKF_Box-->
+<div id="QQKF_Box_Opacity_Div" class="PopBox_Opacity"></div>
+<div id="QQKF_Box" class="PopBox" style="width: 800px; height: 300px; margin-left: -400px; margin-top: -150px;">
+    <iframe id="qqkf_frame" scrolling="no" src="" style="width: 800px; height: 300px;" frameborder="no"></iframe>
+</div>
+<!--/.QQKF_Box-->
+<!--QQKFs_Box-->
+<div id="QQKFs_Box_Opacity_Div" class="PopBox_Opacity"></div>
+<div id="QQKFs_Box" class="PopBox" style="width: 800px; height: 300px; margin-left: -400px; margin-top: -150px;">
+    <iframe id="qqkfs_frame" scrolling="no" src="" style="width: 800px; height: 300px;" frameborder="no"></iframe>
+</div>
+<!--/.QQKFs_Box-->
+<!--footer-->
+<div class="Y_Footer">X
+    <div id="cnzz" style="display: none;">
+    </div>
+</div>
+<!--/.footer-->
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script language="javascript" type="text/javascript" src="/js/client.js"></script>
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body>
+</html>

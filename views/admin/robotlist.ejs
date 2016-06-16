@@ -1,0 +1,245 @@
+<% layout('admin/master.ejs')%>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">机器人管理</h3>
+        <input type="button" value="添加机器人" id="addRobotBtn" class='btn btn-primary'/>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="box-body">
+        <table id="robotetable" class="table table-bordered " aria-describedby="example2_info">
+            <thead>
+            <tr><th></th><th>机器人名称</th><th>用户等级</th><th>等级图标</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    <!--添加 form start -->
+    <form class="form-horizontal  layer_notice hidden" action="addRobote" method="post" id="addRoboteForm">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-4 control-label">机器人名称</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="addname" name="addname">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-4 control-label">用户等级</label>
+                <div class="col-sm-8">
+                    <select id="addLevel" name="addLevel" class="form-control" value="">
+                        <% lvlist.forEach(function(name){ %>
+                        <option value="<%=name.levlekey%>"><%= name.levlevalue %></option>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <button type="button" id="subaddRobotBtn" class="btn btn-info pull-right closeBtn">添加</button>
+        </div><!-- /.box-footer -->
+    </form>
+
+            <!--更新 form start -->
+            <form class="form-horizontal  layer_notice hidden" action="changeRobot" method="post" id="changeRobotForm">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-4 control-label">机器人名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="robotnamne" name="robotnamne">
+                            <input type="hidden" class="form-control" name="robotid" id="robotid">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-4 control-label">用户等级</label>
+                        <div class="col-sm-8">
+                           <select id="roleselect" name="roleselect" class="form-control" value="">
+                               <% lvlist.forEach(function(name){ %>
+                               <option value="<%=name.levlekey%>"><%= name.levlevalue %></option>
+                               <% }) %>
+                           </select>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" id="subRobotChange" class="btn btn-info pull-right closeBtn">确定</button>
+                </div><!-- /.box-footer -->
+            </form>
+    <!-- /.box-body -->
+
+    <!-- /.box-footer -->
+
+</div>
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="../plugins/datatables/jquery.dataTables.css">
+<script>
+    var trNodep;
+    $(document).ready(function() {
+        //提交添加
+        $("#subaddRobotBtn").on('click', function () {
+            var parmets = {
+                addName: $("#addname").val(),
+                addLevel: $("#addLevel").find("option:selected").val(),
+                addLevelName: $("#addLevel").find("option:selected").text()
+            }
+            $.ajax({
+                url: 'doaddRobot',
+                type: 'POST',
+                data: parmets,
+                success: function (returndata) {
+                    layer.closeAll();
+                    location.reload();
+                }, error: function (returndata) {
+                    layer.alert('更新失败，请检查是否有非法词汇！');
+                }
+            });
+        });
+        //提交更新
+        $('#subRobotChange').on('click',function(){
+            var parmets = {robotid:$("#robotid").val(),robotnamne:$("#robotnamne").val(),level:$("#roleselect").find("option:selected").val(),levelname:$("#roleselect").find("option:selected").text()}
+            $.ajax({
+                url: 'dochangeRobot' ,
+                type: 'POST',
+                data: parmets,
+                success: function (returndata) {
+                    trNodep.children().eq(1).html($("#robotnamne").val());
+                    trNodep.children().eq(2).html($("#roleselect").find("option:selected").text());
+                    trNodep.children().eq(3).find("input").val($("#roleselect").find("option:selected").val());
+                    trNodep.children().eq(3).find("img").attr("src","/images/"+$("#roleselect").find("option:selected").val()+".png");
+                    layer.closeAll();
+                    layer.alert('修改成功');
+                },error: function (returndata) {
+                    alert('更新失败，请检查是否有非法词汇！');
+                }
+            });
+        });
+        //添加机器人显示层
+        $("#addRobotBtn").on('click',function(){
+            $('#addRoboteForm').removeClass('hidden');
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim',
+                shade: false,
+                title: false, //不显示标题
+                content: $('#addRoboteForm'), //捕获的元素
+                area: ['420px'],
+                cancel: function(index){
+                    layer.close(index);
+                },
+                scrollbar: false
+            });
+        });
+        //显示机器人列表
+        $('#robotetable').DataTable( {
+            "ajax": "dorobotelist",//获取数据的url
+            "bFilter": false,                       //不使用过滤功能
+            "bLengthChange": false,                 //用户不可改变每页显示数量
+            "iDisplayLength":9,                    //每页显示8条数据
+            "oLanguage": {                          //汉化
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "没有检索到数据",
+                "sInfo": "当前数据为从第 _START_ 到第 _END_ 条数据；总共有 _TOTAL_ 条记录",
+                "sInfoEmtpy": "没有数据",
+                "sProcessing": "正在加载数据...",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前页",
+                    "sNext": "后页",
+                    "sLast": "尾页"
+                }
+            },
+            "columns": [
+                { "data": "_id"},
+                { "data": "nick_name" },
+                { "data": "levelname"},
+                { "data": "level"},
+                { "data": "usertype"}
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "data":"_id",
+                    "render": function(data, type, full) {
+                        return "<input type='hidden' value='" + data + "' class='btn btn-primary update'>";
+                    }
+                },
+                {
+                    "targets": [4],
+                    "data":"_id",
+                    "render": function(data, type, full) {
+                        return "<button type='button' id='update' class='btn btn-primary updatess'>修改</button>&nbsp&nbsp&nbsp<button type='button' id='delete' class='btn btn-primary deletess'>删除</button>";
+                    }
+                },
+                {
+                    "targets": [3],
+                    "data": "level",
+                    "render": function(data, type, full) {
+                        return "<img width='30' src='/images/" + data + ".png'/><input type='hidden' value="+data+">";
+                    }
+                }
+            ], "fnDrawCallback": function(oSettings, json) {
+                //绑定更新事件
+                $(".updatess").on('click',function () {
+                    $('#changeRobotForm').removeClass('hidden');
+                    var trNode = $(this).parent().parent();
+                    trNodep=trNode;
+                    $("#robotnamne").val(trNode.children().eq(1).html());
+                    var sletcval= trNode.children().eq(3).find('input').val()
+                    var hiddenid= trNode.children().eq(0).find("input").val();
+                    $("#robotid").val(hiddenid);
+                    $("#roleselect option[value='"+sletcval+"']").attr("selected",true);
+                    layer.open({
+                        type: 1,
+                        skin: 'layui-layer-rim',
+                        shade: false,
+                        title: false, //不显示标题
+                        content: $('#changeRobotForm'), //捕获的元素
+                        area: ['420px'],
+                        cancel: function(index){
+                            layer.close(index);
+                        },
+                        scrollbar: false
+                    });
+                    //alert(forthChildTdNode.html());
+                    //var params={action:'updateAnswer',content:firstInput.val(),id:trNode.children().eq(0).text(),answertime:$("#answertime").val()};
+                    //$("input").serialize();
+                });
+                //绑定删除事件
+                $(".deletess").on('click',function () {
+                    var trNode = $(this).parent().parent();
+                    var hiddenid= trNode.children().eq(0).find("input").val();
+                    var parmets = {
+                        roboteid:hiddenid
+                    }
+                    layer.confirm('您确定要删除吗？', {
+                        btn: ['确定','返回'] //按钮
+                    }, function(){
+                        $.ajax({
+                            url: 'dodelRobote',
+                            type: 'POST',
+                            data: parmets,
+                            success: function (returndata) {
+                                layer.msg('删除成功');
+                                setTimeout('location.reload()',1500);
+                            }, error: function (returndata) {
+                                layer.alert('更新失败，请检查是否有非法词汇！');
+                            }
+                        });
+                    }, function(){
+                        layer.msg('已取消');
+                    });
+                    //获取删除ID
+
+
+                    //alert(forthChildTdNode.html());
+                    //var params={action:'updateAnswer',content:firstInput.val(),id:trNode.children().eq(0).text(),answertime:$("#answertime").val()};
+                    //$("input").serialize();
+                });
+            }
+        } );
+        //删除机器人
+
+    } );
+</script>

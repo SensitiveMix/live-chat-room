@@ -1,0 +1,272 @@
+/* CSS Document */
+* {
+    font: 12px/18px "Microsoft Yahei",Simsun,Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html, body, div, p, h1, h2, h3, h4, blockquote, pre, form, fieldset, ol, ul, li, dl, dd, dt, table, tbody, thead, tfoot, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: none repeat scroll 0 0 transparent;
+    color: #424542;
+    font: 12px/18px Tahoma,"Microsoft Yahei",Simsun,Arial,Helvetica,sans-serif;
+}
+
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+
+button {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+input {
+    vertical-align: middle;
+}
+
+input, textarea {
+    font-size: inherit;
+    outline: 0;
+}
+
+textarea {
+    background: none no-repeat scroll 0 0 transparent;
+    border: 0px solid #D1D1D1;
+    padding: 4px 4px 2px;
+    resize: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th a {
+    color: #000000;
+}
+
+table th a.on {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a {
+    color: #ffffff;
+    outline: 0 none;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+em {
+    font-style: normal;
+}
+
+fieldset {
+    border: 0 none;
+}
+
+legend {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 14px;
+}
+
+.clear {
+    clear: both;
+}
+
+.fix {
+}
+
+.fix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.red {
+    color: #FF0099;
+}
+
+.none {
+    display: none;
+}
+
+.Page {
+    margin: 0 auto;
+}
+
+.NoSelect {
+    -moz-user-focus: ignore;
+    -moz-user-input: disabled;
+    -moz-user-select: none;
+}
+
+html {
+    background: none repeat scroll 0 0 #D7D8DA;
+}
+
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 990px;
+}
+
+a {
+    color: #333;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CECECE;
+    height: 18px;
+    line-height: 18px;
+    padding: 6px 5px;
+    width: 240px;
+}
+
+.baseheader {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 14px 0 10px;
+    position: relative;
+    z-index: 600;
+    border-bottom: 7px solid #AABDD5;
+}
+
+.basetop {
+    margin: 0 auto;
+    width: 990px;
+    position: relative;
+}
+
+.basetop span {
+    padding-top: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.basetop span a {
+    color: #333333 !important;
+    font: 16px/44px "微软雅黑";
+    margin-left: 20px;
+}
+
+.basetop span a:hover {
+    text-decoration: underline;
+}
+
+.basetop .logo {
+    background: url("/Content/Images/logo.png?20121028") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 44px;
+    width: 243px;
+}
+
+.basemain {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 507px;
+    position: relative;
+}
+
+#baseFoot {
+    color: #969696;
+    margin: 0 auto;
+    padding: 15px 0 20px;
+    text-align: center;
+    width: 990px;
+}
+
+#baseFoot a {
+    color: #969696;
+    margin-left: 10px;
+}
+
+.header {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 14px 0 10px;
+    position: relative;
+    z-index: 600;
+    border-bottom: 7px solid #AABDD5;
+}
+
+.top {
+    margin: 0 auto;
+    width: 990px;
+    position: relative;
+}
+
+.top span {
+    padding-top: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.fr {
+    float: right;
+}
+
+.top span a {
+    color: #333333 !important;
+    font: 12px/60px "微软雅黑";
+    margin-left: 20px;
+}
+
+.top span a:hover {
+    text-decoration: underline;
+}
+
+.top .logo {
+    background: url("/Content/Images/Reg/vlogo_large.png?20121028") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 60px;
+    width: 243px;
+}
+
+.foot {
+    color: #838383;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    width: 990px;
+    background: url("/Content/images/footerBg.png") no-repeat scroll center top transparent;
+}
+
+.foot a {
+    color: #969696;
+    margin-left: 10px;
+}
