@@ -19,9 +19,9 @@ npm install https://github.com/sunNode/live-chat-room
 
 ## START
 ```bash
-
-npm start 
-
+    1. grunt
+    2. npm start 
+    3. browserify website localhost:3000
 ```
 
 
