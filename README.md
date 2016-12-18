@@ -1,3 +1,10 @@
-# live_chat_room
+```bash
+    __    _                                __             __                                          
+   / /   (_) _   __  ___          _____   / /_   ____ _  / /_          _____  ____   ____    ____ ___ 
+  / /   / / | | / / / _ \        / ___/  / __ \ / __ `/ / __/         / ___/ / __ \ / __ \  / __ `__ \
+ / /   / /  | |/ / /  __/       / /__   / / / // /_/ / / /_          / /    / /_/ // /_/ / / / / / / /
+/_/   /_/   |___/  \___/  ______\___/  /_/ /_/ \__,_/  \__/   ______/_/     \____/ \____/ /_/ /_/ /_/ 
+                         /_____/                             /_____/                                  
+```
 
-The financial situation，you can use socket.io plugin to make chat more easy
+> The financial situation，you can use socket.io plugin to make chat more easy
