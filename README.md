@@ -9,7 +9,7 @@
 
 ## Installation
 ```bash
-npm install https://github.com/sunNode/live-chat-room
+npm install https://github.com/SensitiveMix/live-chat-room
 ```
 
 
